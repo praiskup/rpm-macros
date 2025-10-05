@@ -77,9 +77,6 @@ def _main():
     for name in macro_names:
         try:
             macro_def = db[name]
-            if name == "golang_arches":
-                breakpoint()
-
             if name == "gometa":
                 macro_defs["gometa"] = [{
                     "def": (
