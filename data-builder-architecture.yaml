@@ -1,0 +1,1303 @@
+Successfully merged data:
+GNAT_arches:
+- distro:
+  - opensuse-tumbleweed
+  - rhel-10
+  - rhel-8
+  - rhel-9
+  value: null
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  value:
+  - def: i386 i486 i586 i686 pentium3 pentium4 athlon geode x86_64 ppc64 ppc64p7 ppc64le
+      s390x aarch64 ia64 ppc alpha armv3l armv4b armv4l armv4tl armv5tl armv5tel armv5tejl
+      armv6l armv6hl armv7l armv7hl armv7hnl armv8l armv8hl armv8hnl armv8hcnl riscv64
+    params: null
+- distro:
+  - rhel-7
+  value:
+  - def: i386 i486 i586 i686 pentium3 pentium4 athlon geode x86_64 ia64 ppc ppc64
+      ppc64le alpha aarch64
+    params: null
+GPRbuild_arches:
+- distro:
+  - opensuse-tumbleweed
+  - rhel-10
+  - rhel-7
+  - rhel-8
+  - rhel-9
+  value: null
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  value:
+  - def: i386 i486 i586 i686 pentium3 pentium4 athlon geode x86_64 ppc64 ppc64p7 ppc64le
+      s390x aarch64
+    params: null
+_efi:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - opensuse-tumbleweed
+  - rhel-10
+  - rhel-7
+  - rhel-8
+  - rhel-9
+  value: null
+_efi_srpm_macros_setup:
+- distro:
+  - rhel-10
+  - rhel-9
+  value:
+  - def: "%{expand:%{lua:\n  -- test if our arch matches\n  local function arch(archmacro)\n\
+      \    local target = rpm.expand(\" %{_target_cpu} \")\n    local arches = rpm.expand(\"\
+      \ \" .. archmacro .. \" \")\n    local match = string.match(arches, target)\n\
+      \    return (match ~= nil)\n  end\n  -- give us the arch...\n  local function\
+      \ getarch()\n    if arch(\"ia64\") then\n      return(\"ia64\")\n    elseif\
+      \ arch(\"x86_64\") then\n      return(\"x64\")\n    elseif arch(\"%{ix86}\"\
+      ) then\n      return(\"ia32\")\n    elseif arch(\"aarch64\") then\n      return(\"\
+      aa64\")\n    elseif arch(\"%{arm}\") then\n      return(\"arm\")\n    else\n\
+      \      return(\"none\")\n    end\n  end\n  -- alt arch\n  local function getaltarch()\n\
+      \    return(\"none\")\n  end\n  -- make some macros\n  local done = rpm.expand(\"\
+      %{?_efi}\")\n  if done == nil or done == \"\" then\n    local arch = getarch()\n\
+      \    local alt = getaltarch()\n    print(\"%global _efi x86_64 aarch64 armv3l\
+      \ armv4b armv4l armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl armv7l armv7hl\
+      \ armv7hnl armv8l armv8hl armv8hnl armv8hcnl i386 i486 i586 i686 pentium3 pentium4\
+      \ athlon geode\\n\")\n    print(\"%global _efi_vendor redhat\\n\")\n    if arch\
+      \ == \"none\" then\n      print(\"%global _efi_has_arch 0\\n\")\n    else\n\
+      \      print(\"%global _efi_has_arch 1\\n\")\n    end\n    print(\"%global _efi_arch\
+      \ \" .. getarch() .. \"\\n\")\n    print(\"%global _efi_arch_upper \" .. string.upper(getarch())\
+      \ .. \"\\n\")\n    if alt == \"none\" then\n      print(\"%global _efi_has_alt_arch\
+      \ 0\\n\")\n    else\n      print(\"%global _efi_has_alt_arch 1\\n\")\n    end\n\
+      \    print(\"%global _efi_alt_arch \" .. alt .. \"\\n\")\n    print(\"%global\
+      \ _efi_alt_arch_upper \" .. string.upper(alt) .. \"\\n\")\n  end\n}}"
+    params: ''
+- distro:
+  - opensuse-tumbleweed
+  - rhel-7
+  value: null
+- distro:
+  - rhel-8
+  value:
+  - def: "%{expand:%{lua:\n  -- test if our arch matches\n  local function arch(archmacro)\n\
+      \    local target = rpm.expand(\" %{_target_cpu} \")\n    local arches = rpm.expand(\"\
+      \ \" .. archmacro .. \" \")\n    local match = string.match(arches, target)\n\
+      \    return (match ~= nil)\n  end\n  -- give us the arch...\n  local function\
+      \ getarch()\n    if arch(\"ia64\") then\n      return(\"ia64\")\n    elseif\
+      \ arch(\"x86_64\") then\n      return(\"x64\")\n    elseif arch(\"%{ix86}\"\
+      ) then\n      return(\"ia32\")\n    elseif arch(\"aarch64\") then\n      return(\"\
+      aa64\")\n    elseif arch(\"%{arm}\") then\n      return(\"arm\")\n    else\n\
+      \      return(\"none\")\n    end\n  end\n  -- alt arch\n  local function getaltarch()\n\
+      \    if arch(\"x86_64\") then\n      return(\"ia32\")\n    else\n      return(\"\
+      none\")\n    end\n  end\n  -- make some macros\n  local done = rpm.expand(\"\
+      %{?_efi}\")\n  if done == nil or done == \"\" then\n    local arch = getarch()\n\
+      \    local alt = getaltarch()\n    print(\"%global _efi x86_64 aarch64 %{arm}\
+      \ %{ix86}\\n\")\n    print(\"%global _efi_vendor redhat\\n\")\n    if arch ==\
+      \ \"none\" then\n      print(\"%global _efi_has_arch 0\\n\")\n    else\n   \
+      \   print(\"%global _efi_has_arch 1\\n\")\n    end\n    print(\"%global _efi_arch\
+      \ \" .. getarch() .. \"\\n\")\n    print(\"%global _efi_arch_upper \" .. string.upper(getarch())\
+      \ .. \"\\n\")\n    if alt == \"none\" then\n      print(\"%global _efi_has_alt_arch\
+      \ 0\\n\")\n    else\n      print(\"%global _efi_has_alt_arch 1\\n\")\n    end\n\
+      \    print(\"%global _efi_alt_arch \" .. alt .. \"\\n\")\n    print(\"%global\
+      \ _efi_alt_arch_upper \" .. string.upper(alt) .. \"\\n\")\n  end\n}}"
+    params: ''
+- distro:
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  value:
+  - def: "%{expand:%{lua:\n  -- test if our arch matches\n  local function arch(archmacro)\n\
+      \    local target = rpm.expand(\" %{_target_cpu} \")\n    local arches = rpm.expand(\"\
+      \ \" .. archmacro .. \" \")\n    local match = string.match(arches, target)\n\
+      \    return (match ~= nil)\n  end\n  -- give us the arch...\n  local function\
+      \ getarch()\n    if arch(\"ia64\") then\n      return(\"ia64\")\n    elseif\
+      \ arch(\"x86_64\") then\n      return(\"x64\")\n    elseif arch(\"%{ix86}\"\
+      ) then\n      return(\"ia32\")\n    elseif arch(\"aarch64\") then\n      return(\"\
+      aa64\")\n    elseif arch(\"%{arm}\") then\n      return(\"arm\")\n    elseif\
+      \ arch(\"riscv64\") then\n      return(\"riscv64\")\n    else\n      return(\"\
+      none\")\n    end\n  end\n  -- alt arch\n  local function getaltarch()\n    return(\"\
+      none\")\n  end\n  -- make some macros\n  local done = rpm.expand(\"%{?_efi}\"\
+      )\n  if done == nil or done == \"\" then\n    local arch = getarch()\n    local\
+      \ alt = getaltarch()\n    print(\"%global _efi x86_64 aarch64 armv3l armv4b\
+      \ armv4l armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl armv7l armv7hl armv7hnl\
+      \ armv8l armv8hl armv8hnl armv8hcnl i386 i486 i586 i686 pentium3 pentium4 athlon\
+      \ geode riscv64\\n\")\n    print(\"%global _efi_vendor fedora\\n\")\n    if\
+      \ arch == \"none\" then\n      print(\"%global _efi_has_arch 0\\n\")\n    else\n\
+      \      print(\"%global _efi_has_arch 1\\n\")\n    end\n    print(\"%global _efi_arch\
+      \ \" .. getarch() .. \"\\n\")\n    print(\"%global _efi_arch_upper \" .. string.upper(getarch())\
+      \ .. \"\\n\")\n    if alt == \"none\" then\n      print(\"%global _efi_has_alt_arch\
+      \ 0\\n\")\n    else\n      print(\"%global _efi_has_alt_arch 1\\n\")\n    end\n\
+      \    print(\"%global _efi_alt_arch \" .. alt .. \"\\n\")\n    print(\"%global\
+      \ _efi_alt_arch_upper \" .. string.upper(alt) .. \"\\n\")\n  end\n}}"
+    params: ''
+- distro:
+  - fedora-41
+  value:
+  - def: "%{expand:%{lua:\n  -- test if our arch matches\n  local function arch(archmacro)\n\
+      \    local target = rpm.expand(\" %{_target_cpu} \")\n    local arches = rpm.expand(\"\
+      \ \" .. archmacro .. \" \")\n    local match = string.match(arches, target)\n\
+      \    return (match ~= nil)\n  end\n  -- give us the arch...\n  local function\
+      \ getarch()\n    if arch(\"ia64\") then\n      return(\"ia64\")\n    elseif\
+      \ arch(\"x86_64\") then\n      return(\"x64\")\n    elseif arch(\"%{ix86}\"\
+      ) then\n      return(\"ia32\")\n    elseif arch(\"aarch64\") then\n      return(\"\
+      aa64\")\n    elseif arch(\"%{arm}\") then\n      return(\"arm\")\n    elseif\
+      \ arch(\"riscv64\") then\n      return(\"riscv64\")\n    else\n      return(\"\
+      none\")\n    end\n  end\n  -- alt arch\n  local function getaltarch()\n    if\
+      \ arch(\"x86_64\") then\n      return(\"ia32\")\n    else\n      return(\"none\"\
+      )\n    end\n  end\n  -- make some macros\n  local done = rpm.expand(\"%{?_efi}\"\
+      )\n  if done == nil or done == \"\" then\n    local arch = getarch()\n    local\
+      \ alt = getaltarch()\n    print(\"%global _efi x86_64 aarch64 armv3l armv4b\
+      \ armv4l armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl armv7l armv7hl armv7hnl\
+      \ armv8l armv8hl armv8hnl armv8hcnl i386 i486 i586 i686 pentium3 pentium4 athlon\
+      \ geode riscv64\\n\")\n    print(\"%global _efi_vendor fedora\\n\")\n    if\
+      \ arch == \"none\" then\n      print(\"%global _efi_has_arch 0\\n\")\n    else\n\
+      \      print(\"%global _efi_has_arch 1\\n\")\n    end\n    print(\"%global _efi_arch\
+      \ \" .. getarch() .. \"\\n\")\n    print(\"%global _efi_arch_upper \" .. string.upper(getarch())\
+      \ .. \"\\n\")\n    if alt == \"none\" then\n      print(\"%global _efi_has_alt_arch\
+      \ 0\\n\")\n    else\n      print(\"%global _efi_has_alt_arch 1\\n\")\n    end\n\
+      \    print(\"%global _efi_alt_arch \" .. alt .. \"\\n\")\n    print(\"%global\
+      \ _efi_alt_arch_upper \" .. string.upper(alt) .. \"\\n\")\n  end\n}}"
+    params: ''
+arm:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - rhel-10
+  - rhel-9
+  value:
+  - def: armv3l armv4b armv4l armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl armv7l
+      armv7hl armv7hnl armv8l armv8hl armv8hnl armv8hcnl
+    params: null
+- distro:
+  - opensuse-tumbleweed
+  value:
+  - def: armv3l armv4b armv4l armv4tl armv5b armv5l armv5teb armv5tel armv5tejl armv6l
+      armv6hl armv7l armv7hl armv7hnl armv8l armv8hl armv8hnl armv8hcnl
+    params: null
+- distro:
+  - rhel-8
+  value:
+  - def: armv3l armv4b armv4l armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl armv7l
+      armv7hl armv7hnl
+    params: null
+- distro:
+  - rhel-7
+  value:
+  - def: armv3l armv4b armv4l armv4tl armv5tel armv5tejl armv6l armv7l armv7hl armv7hnl
+    params: null
+arm32:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - rhel-10
+  - rhel-9
+  value:
+  - def: armv3l armv4b armv4l armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl armv7l
+      armv7hl armv7hnl armv8l armv8hl armv8hnl armv8hcnl
+    params: null
+- distro:
+  - opensuse-tumbleweed
+  value:
+  - def: armv3l armv4b armv4l armv4tl armv5b armv5l armv5teb armv5tel armv5tejl armv6l
+      armv6hl armv7l armv7hl armv7hnl armv8l armv8hl armv8hnl armv8hcnl
+    params: null
+- distro:
+  - rhel-7
+  - rhel-8
+  value: null
+arm64:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - opensuse-tumbleweed
+  - rhel-10
+  - rhel-9
+  value:
+  - def: aarch64
+    params: null
+- distro:
+  - rhel-7
+  - rhel-8
+  value: null
+centos:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - opensuse-tumbleweed
+  - rhel-10
+  - rhel-7
+  - rhel-8
+  - rhel-9
+  value: null
+cross:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - opensuse-tumbleweed
+  - rhel-10
+  - rhel-7
+  - rhel-8
+  - rhel-9
+  value: null
+efi:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - rhel-10
+  - rhel-8
+  - rhel-9
+  value:
+  - def: x86_64 aarch64 armv3l armv4b armv4l armv4tl armv5tl armv5tel armv5tejl armv6l
+      armv6hl armv7l armv7hl armv7hnl armv8l armv8hl armv8hnl armv8hcnl i386 i486
+      i586 i686 pentium3 pentium4 athlon geode riscv64
+    params: null
+- distro:
+  - opensuse-tumbleweed
+  - rhel-7
+  value: null
+el10:
+- distro:
+  - rhel-10
+  value:
+  - def: '1'
+    params: null
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - opensuse-tumbleweed
+  - rhel-7
+  - rhel-8
+  - rhel-9
+  value: null
+el11:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - opensuse-tumbleweed
+  - rhel-10
+  - rhel-7
+  - rhel-8
+  - rhel-9
+  value: null
+el6:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - opensuse-tumbleweed
+  - rhel-10
+  - rhel-7
+  - rhel-8
+  - rhel-9
+  value: null
+el7:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - opensuse-tumbleweed
+  - rhel-10
+  - rhel-8
+  - rhel-9
+  value: null
+- distro:
+  - rhel-7
+  value:
+  - def: '1'
+    params: null
+el8:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - opensuse-tumbleweed
+  - rhel-10
+  - rhel-7
+  - rhel-9
+  value: null
+- distro:
+  - rhel-8
+  value:
+  - def: '1'
+    params: null
+el9:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - opensuse-tumbleweed
+  - rhel-10
+  - rhel-7
+  - rhel-8
+  value: null
+- distro:
+  - rhel-9
+  value:
+  - def: '1'
+    params: null
+epel:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - opensuse-tumbleweed
+  - rhel-10
+  - rhel-7
+  - rhel-8
+  - rhel-9
+  value: null
+fc40:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - opensuse-tumbleweed
+  - rhel-10
+  - rhel-7
+  - rhel-8
+  - rhel-9
+  value: null
+fc41:
+- distro:
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - opensuse-tumbleweed
+  - rhel-10
+  - rhel-7
+  - rhel-8
+  - rhel-9
+  value: null
+- distro:
+  - fedora-41
+  value:
+  - def: '1'
+    params: null
+fc42:
+- distro:
+  - fedora-41
+  - fedora-43
+  - fedora-rawhide
+  - opensuse-tumbleweed
+  - rhel-10
+  - rhel-7
+  - rhel-8
+  - rhel-9
+  value: null
+- distro:
+  - fedora-42
+  value:
+  - def: '1'
+    params: null
+fc43:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-rawhide
+  - opensuse-tumbleweed
+  - rhel-10
+  - rhel-7
+  - rhel-8
+  - rhel-9
+  value: null
+- distro:
+  - fedora-43
+  value:
+  - def: '1'
+    params: null
+fc44:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - opensuse-tumbleweed
+  - rhel-10
+  - rhel-7
+  - rhel-8
+  - rhel-9
+  value: null
+- distro:
+  - fedora-rawhide
+  value:
+  - def: '1'
+    params: null
+fc45:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - opensuse-tumbleweed
+  - rhel-10
+  - rhel-7
+  - rhel-8
+  - rhel-9
+  value: null
+fedora:
+- distro:
+  - opensuse-tumbleweed
+  - rhel-10
+  - rhel-7
+  - rhel-8
+  - rhel-9
+  value: null
+- distro:
+  - fedora-43
+  value:
+  - def: '43'
+    params: null
+- distro:
+  - fedora-rawhide
+  value:
+  - def: '44'
+    params: null
+- distro:
+  - fedora-42
+  value:
+  - def: '42'
+    params: null
+- distro:
+  - fedora-41
+  value:
+  - def: '41'
+    params: null
+fpc_arches:
+- distro:
+  - opensuse-tumbleweed
+  - rhel-10
+  - rhel-7
+  - rhel-8
+  - rhel-9
+  value: null
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  value:
+  - def: i386 i486 i586 i686 pentium3 pentium4 athlon geode armv3l armv4b armv4l armv4tl
+      armv5tl armv5tel armv5tejl armv6l armv6hl armv7l armv7hl armv7hnl armv8l armv8hl
+      armv8hnl armv8hcnl x86_64 ppc64le aarch64
+    params: null
+gccgo_arches:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - rhel-10
+  - rhel-8
+  - rhel-9
+  value:
+  - def: mips mipsel mipsr6 mipsr6el mips64 mips64el mips64r6 mips64r6el
+    params: null
+- distro:
+  - opensuse-tumbleweed
+  - rhel-7
+  value: null
+go_arches:
+- distro:
+  - rhel-10
+  - rhel-9
+  value:
+  - def: x86_64 aarch64 ppc64le s390x mips mipsel mipsr6 mipsr6el mips64 mips64el
+      mips64r6 mips64r6el
+    params: null
+- distro:
+  - opensuse-tumbleweed
+  - rhel-7
+  value: null
+- distro:
+  - rhel-8
+  value:
+  - def: x86_64 armv3l armv4b armv4l armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl
+      armv7l armv7hl armv7hnl aarch64 ppc64le s390x mips mipsel mipsr6 mipsr6el mips64
+      mips64el mips64r6 mips64r6el
+    params: null
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  value:
+  - def: i386 i486 i586 i686 pentium3 pentium4 athlon geode x86_64 armv3l armv4b armv4l
+      armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl armv7l armv7hl armv7hnl armv8l
+      armv8hl armv8hnl armv8hcnl aarch64 ppc64le s390x riscv64 mips mipsel mipsr6
+      mipsr6el mips64 mips64el mips64r6 mips64r6el
+    params: null
+golang_arches:
+- distro:
+  - rhel-10
+  - rhel-9
+  value:
+  - def: x86_64 aarch64 ppc64le s390x
+    params: null
+- distro:
+  - opensuse-tumbleweed
+  - rhel-7
+  value: null
+- distro:
+  - rhel-8
+  value:
+  - def: x86_64 armv3l armv4b armv4l armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl
+      armv7l armv7hl armv7hnl aarch64 ppc64le s390x
+    params: null
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  value:
+  - def: i386 i486 i586 i686 pentium3 pentium4 athlon geode x86_64 armv3l armv4b armv4l
+      armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl armv7l armv7hl armv7hnl armv8l
+      armv8hl armv8hnl armv8hcnl aarch64 ppc64le s390x riscv64
+    params: null
+golang_arches_future:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - rhel-10
+  value:
+  - def: x86_64 armv3l armv4b armv4l armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl
+      armv7l armv7hl armv7hnl armv8l armv8hl armv8hnl armv8hcnl aarch64 ppc64le s390x
+      riscv64
+    params: null
+- distro:
+  - opensuse-tumbleweed
+  - rhel-7
+  - rhel-8
+  value: null
+- distro:
+  - rhel-9
+  value:
+  - def: x86_64 armv3l armv4b armv4l armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl
+      armv7l armv7hl armv7hnl armv8l armv8hl armv8hnl armv8hcnl aarch64 ppc64le s390x
+    params: null
+grafana_arches:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - opensuse-tumbleweed
+  - rhel-10
+  - rhel-7
+  - rhel-8
+  - rhel-9
+  value: null
+grafanapcp_arches:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - opensuse-tumbleweed
+  - rhel-10
+  - rhel-7
+  - rhel-8
+  - rhel-9
+  value: null
+grub2_exclude_arches:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - opensuse-tumbleweed
+  - rhel-10
+  - rhel-7
+  - rhel-8
+  - rhel-9
+  value: null
+hare_arches:
+- distro:
+  - fedora-41
+  - opensuse-tumbleweed
+  - rhel-10
+  - rhel-7
+  - rhel-8
+  - rhel-9
+  value: null
+- distro:
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  value:
+  - def: x86_64 aarch64 riscv64
+    params: null
+ix86:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - opensuse-tumbleweed
+  - rhel-10
+  - rhel-7
+  - rhel-8
+  - rhel-9
+  value:
+  - def: i386 i486 i586 i686 pentium3 pentium4 athlon geode
+    params: null
+java_arches:
+- distro:
+  - fedora-41
+  - rhel-10
+  - rhel-9
+  value:
+  - def: aarch64 ppc64le s390x x86_64
+    params: null
+- distro:
+  - opensuse-tumbleweed
+  - rhel-7
+  - rhel-8
+  value: null
+- distro:
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  value:
+  - def: aarch64 ppc64le s390x x86_64 riscv64
+    params: null
+kernel_arches:
+- distro:
+  - rhel-10
+  - rhel-9
+  value:
+  - def: x86_64 s390x ppc64le aarch64
+    params: null
+- distro:
+  - opensuse-tumbleweed
+  - rhel-7
+  value: null
+- distro:
+  - rhel-8
+  value:
+  - def: x86_64 s390x ppc64le aarch64 armv3l armv4b armv4l armv4tl armv5tl armv5tel
+      armv5tejl armv6l armv6hl armv7l armv7hl armv7hnl
+    params: null
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  value:
+  - def: x86_64 s390x ppc64le aarch64 armv3l armv4b armv4l armv4tl armv5tl armv5tel
+      armv5tejl armv6l armv6hl armv7l armv7hl armv7hnl armv8l armv8hl armv8hnl armv8hcnl
+      riscv64
+    params: null
+ldc_arches:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - rhel-10
+  - rhel-9
+  value:
+  - def: i386 i486 i586 i686 pentium3 pentium4 athlon geode x86_64 armv3l armv4b armv4l
+      armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl armv7l armv7hl armv7hnl armv8l
+      armv8hl armv8hnl armv8hcnl aarch64
+    params: null
+- distro:
+  - opensuse-tumbleweed
+  - rhel-7
+  value: null
+- distro:
+  - rhel-8
+  value:
+  - def: i386 i486 i586 i686 pentium3 pentium4 athlon geode x86_64 armv3l armv4b armv4l
+      armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl armv7l armv7hl armv7hnl ppc64
+      ppc64p7 ppc64le
+    params: null
+lua:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - opensuse-tumbleweed
+  - rhel-10
+  - rhel-7
+  - rhel-8
+  - rhel-9
+  value: null
+mips:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - opensuse-tumbleweed
+  - rhel-10
+  - rhel-8
+  - rhel-9
+  value:
+  - def: mips mipsel mipsr6 mipsr6el mips64 mips64el mips64r6 mips64r6el
+    params: null
+- distro:
+  - rhel-7
+  value: null
+mips32:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - opensuse-tumbleweed
+  - rhel-10
+  - rhel-8
+  - rhel-9
+  value:
+  - def: mips mipsel mipsr6 mipsr6el
+    params: null
+- distro:
+  - rhel-7
+  value: null
+mips64:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - opensuse-tumbleweed
+  - rhel-10
+  - rhel-8
+  - rhel-9
+  value:
+  - def: mips64 mips64el mips64r6 mips64r6el
+    params: null
+- distro:
+  - rhel-7
+  value: null
+mono_arches:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - rhel-10
+  - rhel-9
+  value:
+  - def: i386 i486 i586 i686 pentium3 pentium4 athlon geode x86_64 sparc sparcv9 ia64
+      armv3l armv4b armv4l armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl armv7l
+      armv7hl armv7hnl armv8l armv8hl armv8hnl armv8hcnl aarch64 alpha s390x ppc ppc64
+      ppc64le
+    params: null
+- distro:
+  - opensuse-tumbleweed
+  value: null
+- distro:
+  - rhel-8
+  value:
+  - def: i386 i486 i586 i686 pentium3 pentium4 athlon geode x86_64 sparc sparcv9 ia64
+      armv3l armv4b armv4l armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl armv7l
+      armv7hl armv7hnl aarch64 alpha s390x ppc ppc64 ppc64le
+    params: null
+- distro:
+  - rhel-7
+  value:
+  - def: i386 i486 i586 i686 pentium3 pentium4 athlon geode x86_64 sparc sparcv9 ia64
+      armv3l armv4b armv4l armv4tl armv5tel armv5tejl armv6l armv7l armv7hl armv7hnl
+      aarch64 alpha s390x ppc ppc64 ppc64le
+    params: null
+no64bit:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - opensuse-tumbleweed
+  - rhel-10
+  - rhel-7
+  - rhel-8
+  - rhel-9
+  value: null
+nodejs_arches:
+- distro:
+  - fedora-41
+  - rhel-10
+  - rhel-9
+  value:
+  - def: i386 i486 i586 i686 pentium3 pentium4 athlon geode x86_64 armv3l armv4b armv4l
+      armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl armv7l armv7hl armv7hnl armv8l
+      armv8hl armv8hnl armv8hcnl aarch64 ppc64 ppc64p7 ppc64le s390x
+    params: null
+- distro:
+  - opensuse-tumbleweed
+  value: null
+- distro:
+  - rhel-8
+  value:
+  - def: i386 i486 i586 i686 pentium3 pentium4 athlon geode x86_64 armv3l armv4b armv4l
+      armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl armv7l armv7hl armv7hnl aarch64
+      ppc64 ppc64p7 ppc64le s390x
+    params: null
+- distro:
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  value:
+  - def: i386 i486 i586 i686 pentium3 pentium4 athlon geode x86_64 armv3l armv4b armv4l
+      armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl armv7l armv7hl armv7hnl armv8l
+      armv8hl armv8hnl armv8hcnl aarch64 ppc64 ppc64p7 ppc64le s390x riscv64
+    params: null
+- distro:
+  - rhel-7
+  value:
+  - def: i386 i486 i586 i686 pentium3 pentium4 athlon geode x86_64 armv3l armv4b armv4l
+      armv4tl armv5tel armv5tejl armv6l armv7l armv7hl armv7hnl aarch64 ppc64le s390x
+    params: null
+ocaml_native_compiler:
+- distro:
+  - fedora-41
+  - fedora-42
+  - rhel-10
+  value:
+  - def: aarch64 ppc64 ppc64p7 ppc64le riscv64 s390x x86_64
+    params: null
+- distro:
+  - opensuse-tumbleweed
+  - rhel-7
+  value: null
+- distro:
+  - rhel-8
+  value:
+  - def: aarch64 armv3l armv4b armv4l armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl
+      armv7l armv7hl armv7hnl i386 i486 i586 i686 pentium3 pentium4 athlon geode ppc
+      ppc64 ppc64le riscv64 s390x sparc sparcv9 x86_64
+    params: null
+- distro:
+  - fedora-43
+  - fedora-rawhide
+  value:
+  - def: aarch64 ppc64 ppc64p7 ppc64le riscv64 s390x x86_64 x86_64_v2 x86_64_v3 x86_64_v4
+      amd64 em64t
+    params: null
+- distro:
+  - rhel-9
+  value:
+  - def: aarch64 armv3l armv4b armv4l armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl
+      armv7l armv7hl armv7hnl armv8l armv8hl armv8hnl armv8hcnl i386 i486 i586 i686
+      pentium3 pentium4 athlon geode ppc ppc64 ppc64le riscv64 s390x sparc sparcv9
+      x86_64
+    params: null
+openblas_arches:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - rhel-10
+  value:
+  - def: x86_64 i386 i486 i586 i686 pentium3 pentium4 athlon geode armv7hl ppc64 ppc64p7
+      ppc64le aarch64 s390x riscv64
+    params: null
+- distro:
+  - opensuse-tumbleweed
+  - rhel-7
+  value: null
+- distro:
+  - rhel-8
+  - rhel-9
+  value:
+  - def: x86_64 i386 i486 i586 i686 pentium3 pentium4 athlon geode armv7hl ppc64 ppc64p7
+      ppc64le aarch64 s390x
+    params: null
+power64:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - opensuse-tumbleweed
+  - rhel-10
+  - rhel-7
+  - rhel-8
+  - rhel-9
+  value:
+  - def: ppc64 ppc64p7 ppc64le
+    params: null
+qt5_qtwebengine_arches:
+- distro:
+  - opensuse-tumbleweed
+  - rhel-10
+  - rhel-7
+  - rhel-8
+  value: null
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  value:
+  - def: i386 i486 i586 i686 pentium3 pentium4 athlon geode x86_64 armv3l armv4b armv4l
+      armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl armv7l armv7hl armv7hnl armv8l
+      armv8hl armv8hnl armv8hcnl aarch64 mips mipsel mips64el riscv64
+    params: null
+- distro:
+  - rhel-9
+  value:
+  - def: i386 i486 i586 i686 pentium3 pentium4 athlon geode x86_64 armv3l armv4b armv4l
+      armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl armv7l armv7hl armv7hnl armv8l
+      armv8hl armv8hnl armv8hcnl aarch64 mips mipsel mips64el
+    params: null
+qt6_qtwebengine_arches:
+- distro:
+  - fedora-41
+  - rhel-10
+  value:
+  - def: x86_64 aarch64
+    params: null
+- distro:
+  - opensuse-tumbleweed
+  - rhel-7
+  - rhel-8
+  - rhel-9
+  value: null
+- distro:
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  value:
+  - def: x86_64 aarch64 ppc64le
+    params: null
+rhel:
+- distro:
+  - rhel-10
+  value:
+  - def: '10'
+    params: null
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - opensuse-tumbleweed
+  value: null
+- distro:
+  - rhel-8
+  value:
+  - def: '8'
+    params: null
+- distro:
+  - rhel-7
+  value:
+  - def: '7'
+    params: null
+- distro:
+  - rhel-9
+  value:
+  - def: '9'
+    params: null
+riscv:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - opensuse-tumbleweed
+  - rhel-10
+  - rhel-9
+  value:
+  - def: riscv32 riscv64 riscv128
+    params: null
+- distro:
+  - rhel-7
+  - rhel-8
+  value: null
+riscv128:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - opensuse-tumbleweed
+  - rhel-10
+  - rhel-9
+  value:
+  - def: riscv128
+    params: null
+- distro:
+  - rhel-7
+  - rhel-8
+  value: null
+riscv32:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - opensuse-tumbleweed
+  - rhel-10
+  - rhel-9
+  value:
+  - def: riscv32
+    params: null
+- distro:
+  - rhel-7
+  - rhel-8
+  value: null
+riscv64:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - opensuse-tumbleweed
+  - rhel-10
+  - rhel-9
+  value:
+  - def: riscv64
+    params: null
+- distro:
+  - rhel-7
+  - rhel-8
+  value: null
+rust_arches:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - rhel-10
+  - rhel-9
+  value:
+  - def: x86_64 i386 i486 i586 i686 pentium3 pentium4 athlon geode armv7hl aarch64
+      ppc64 ppc64le riscv64 s390x
+    params: null
+- distro:
+  - opensuse-tumbleweed
+  - rhel-7
+  value: null
+- distro:
+  - rhel-8
+  value:
+  - def: x86_64 i686 armv7hl aarch64 ppc64 ppc64le s390x
+    params: null
+sparc:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - opensuse-tumbleweed
+  - rhel-10
+  - rhel-7
+  - rhel-8
+  - rhel-9
+  value:
+  - def: sparc sparcv8 sparcv9 sparcv9v sparc64 sparc64v
+    params: null
+suse_version:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - rhel-10
+  - rhel-7
+  - rhel-8
+  - rhel-9
+  value: null
+- distro:
+  - opensuse-tumbleweed
+  value:
+  - def: '1699'
+    params: null
+use_system_admesh:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - opensuse-tumbleweed
+  - rhel-10
+  - rhel-7
+  - rhel-8
+  - rhel-9
+  value: null
+with_alt_arch:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - opensuse-tumbleweed
+  - rhel-10
+  - rhel-7
+  - rhel-8
+  - rhel-9
+  value: null
+with_bootstrap:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - opensuse-tumbleweed
+  - rhel-10
+  - rhel-7
+  - rhel-8
+  - rhel-9
+  value: null
+with_cython:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - opensuse-tumbleweed
+  - rhel-10
+  - rhel-7
+  - rhel-8
+  - rhel-9
+  value: null
+with_cython_compile:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - opensuse-tumbleweed
+  - rhel-10
+  - rhel-7
+  - rhel-8
+  - rhel-9
+  value: null
+with_debug_valgrind:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - opensuse-tumbleweed
+  - rhel-10
+  - rhel-7
+  - rhel-8
+  - rhel-9
+  value: null
+with_dnf5:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - opensuse-tumbleweed
+  - rhel-10
+  - rhel-7
+  - rhel-8
+  - rhel-9
+  value: null
+with_docs:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - opensuse-tumbleweed
+  - rhel-10
+  - rhel-7
+  - rhel-8
+  - rhel-9
+  value: null
+with_optimized_init:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - opensuse-tumbleweed
+  - rhel-10
+  - rhel-7
+  - rhel-8
+  - rhel-9
+  value: null
+with_spec_integration:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - opensuse-tumbleweed
+  - rhel-10
+  - rhel-7
+  - rhel-8
+  - rhel-9
+  value: null
+with_x86_debug:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - opensuse-tumbleweed
+  - rhel-10
+  - rhel-7
+  - rhel-8
+  - rhel-9
+  value: null
+x86_64:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - opensuse-tumbleweed
+  - rhel-10
+  value:
+  - def: x86_64 x86_64_v2 x86_64_v3 x86_64_v4 amd64 em64t
+    params: null
+- distro:
+  - rhel-7
+  - rhel-8
+  - rhel-9
+  value: null
+zig_arches:
+- distro:
+  - opensuse-tumbleweed
+  - rhel-10
+  - rhel-7
+  - rhel-8
+  - rhel-9
+  value: null
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  value:
+  - def: x86_64 aarch64 riscv64 mips64 mips64el mips64r6 mips64r6el
+    params: null
+

@@ -1,0 +1,103 @@
+GNAT_arches: null
+GPRbuild_arches: null
+_efi: null
+_efi_srpm_macros_setup: null
+arm:
+- def: armv3l armv4b armv4l armv4tl armv5b armv5l armv5teb armv5tel armv5tejl armv6l
+    armv6hl armv7l armv7hl armv7hnl armv8l armv8hl armv8hnl armv8hcnl
+  params: null
+arm32:
+- def: armv3l armv4b armv4l armv4tl armv5b armv5l armv5teb armv5tel armv5tejl armv6l
+    armv6hl armv7l armv7hl armv7hnl armv8l armv8hl armv8hnl armv8hcnl
+  params: null
+arm64:
+- def: aarch64
+  params: null
+centos: null
+cross: null
+efi: null
+el10: null
+el11: null
+el6: null
+el7: null
+el8: null
+el9: null
+epel: null
+fc40: null
+fc41: null
+fc42: null
+fc43: null
+fc44: null
+fc45: null
+fedora: null
+fpc_arches: null
+gccgo_arches: null
+go_arches: null
+golang_arches: null
+golang_arches_future: null
+grafana_arches: null
+grafanapcp_arches: null
+grub2_exclude_arches: null
+hare_arches: null
+ix86:
+- def: i386 i486 i586 i686 pentium3 pentium4 athlon geode
+  params: null
+java_arches: null
+kernel_arches: null
+ldc_arches: null
+lua: null
+mips:
+- def: mips mipsel mipsr6 mipsr6el mips64 mips64el mips64r6 mips64r6el
+  params: null
+mips32:
+- def: mips mipsel mipsr6 mipsr6el
+  params: null
+mips64:
+- def: mips64 mips64el mips64r6 mips64r6el
+  params: null
+mono_arches: null
+no64bit: null
+nodejs_arches: null
+ocaml_native_compiler: null
+openblas_arches: null
+power64:
+- def: ppc64 ppc64p7 ppc64le
+  params: null
+qt5_qtwebengine_arches: null
+qt6_qtwebengine_arches: null
+rhel: null
+riscv:
+- def: riscv32 riscv64 riscv128
+  params: null
+riscv128:
+- def: riscv128
+  params: null
+riscv32:
+- def: riscv32
+  params: null
+riscv64:
+- def: riscv64
+  params: null
+rust_arches: null
+sparc:
+- def: sparc sparcv8 sparcv9 sparcv9v sparc64 sparc64v
+  params: null
+suse_version:
+- def: '1699'
+  params: null
+use_system_admesh: null
+with_alt_arch: null
+with_bootstrap: null
+with_cython: null
+with_cython_compile: null
+with_debug_valgrind: null
+with_dnf5: null
+with_docs: null
+with_optimized_init: null
+with_spec_integration: null
+with_x86_debug: null
+x86_64:
+- def: x86_64 x86_64_v2 x86_64_v3 x86_64_v4 amd64 em64t
+  params: null
+zig_arches: null
+
