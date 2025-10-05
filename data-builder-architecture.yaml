@@ -1,4 +1,3 @@
-Successfully merged data:
 GNAT_arches:
 - distro:
   - opensuse-tumbleweed
@@ -624,7 +623,7 @@ gometa:
 
       ExclusiveArch: %{golang_arches_future}
 
-      %fi
+      %endif
 
       '
     params: az:svifL

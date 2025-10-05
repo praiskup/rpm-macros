@@ -86,7 +86,7 @@ gometa:
 
     ExclusiveArch: %{golang_arches_future}
 
-    %fi
+    %endif
 
     '
   params: az:svifL

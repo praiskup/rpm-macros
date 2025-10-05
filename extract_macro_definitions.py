@@ -85,7 +85,7 @@ def _main():
                         'ExclusiveArch: %{golang_arches}\n'
                         '%else\n'
                         'ExclusiveArch: %{golang_arches_future}\n'
-                        '%fi\n'
+                        '%endif\n'
                     ),
                     "params": "az:svifL",
                 }]

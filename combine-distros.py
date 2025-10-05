@@ -66,7 +66,6 @@ if __name__ == "__main__":
 
         # Check if the result is empty
         if merged_result:
-            print("Successfully merged data:")
             # Use sort_keys=False to maintain the order of keys from the first file found
             print(yaml.dump(merged_result, sort_keys=True))
         else:
