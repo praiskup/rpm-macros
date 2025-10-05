@@ -94,6 +94,21 @@ golang_arches_future:
     armv7l armv7hl armv7hnl armv8l armv8hl armv8hnl armv8hcnl aarch64 ppc64le s390x
     riscv64
   params: null
+gometa:
+- def: 'BuildRequires: go-rpm-macros
+
+    %if "%{-m}" == ""
+
+    ExclusiveArch: %{golang_arches}
+
+    %else
+
+    ExclusiveArch: %{golang_arches_future}
+
+    %fi
+
+    '
+  params: az:svifL
 grafana_arches: null
 grafanapcp_arches: null
 grub2_exclude_arches: null

@@ -604,6 +604,34 @@ golang_arches_future:
   - def: x86_64 armv3l armv4b armv4l armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl
       armv7l armv7hl armv7hnl armv8l armv8hl armv8hnl armv8hcnl aarch64 ppc64le s390x
     params: null
+gometa:
+- distro:
+  - fedora-41
+  - fedora-42
+  - fedora-43
+  - fedora-rawhide
+  - rhel-10
+  - rhel-8
+  - rhel-9
+  value:
+  - def: 'BuildRequires: go-rpm-macros
+
+      %if "%{-m}" == ""
+
+      ExclusiveArch: %{golang_arches}
+
+      %else
+
+      ExclusiveArch: %{golang_arches_future}
+
+      %fi
+
+      '
+    params: az:svifL
+- distro:
+  - opensuse-tumbleweed
+  - rhel-7
+  value: null
 grafana_arches:
 - distro:
   - fedora-41

@@ -34,6 +34,7 @@ gccgo_arches: null
 go_arches: null
 golang_arches: null
 golang_arches_future: null
+gometa: null
 grafana_arches: null
 grafanapcp_arches: null
 grub2_exclude_arches: null

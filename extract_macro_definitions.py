@@ -62,6 +62,11 @@ def _load_list(filename):
         output.add(f"fc{i}")
     for i in range(RHEL_LAST - 5, RHEL_LAST + 1):
         output.add(f"el{i}")
+
+    output.add("gometa")
+    output.add("golang_arches")
+    output.add("golang_arches_future")
+
     return list(output)
 
 def _main():
@@ -72,6 +77,23 @@ def _main():
     for name in macro_names:
         try:
             macro_def = db[name]
+            if name == "golang_arches":
+                breakpoint()
+
+            if name == "gometa":
+                macro_defs["gometa"] = [{
+                    "def": (
+                        'BuildRequires: go-rpm-macros\n'
+                        '%if "%{-m}" == ""\n'
+                        'ExclusiveArch: %{golang_arches}\n'
+                        '%else\n'
+                        'ExclusiveArch: %{golang_arches_future}\n'
+                        '%fi\n'
+                    ),
+                    "params": "az:svifL",
+                }]
+                continue
+
             if macro_def.parametric:
                 macro_defs[name] = db[name].dump_def()
                 continue
