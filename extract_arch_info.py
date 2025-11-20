@@ -45,9 +45,11 @@ def handle_target(origdb, overrides, specfile, target):
     db = copy.deepcopy(origdb)
     distro, _ = target.rsplit("-", 1)
     for key in overrides.keys():
+        # No matter if defined for given TARGET, we undefine the macro.
+        # Think of `%fc43` for F44 TARGET on F43 host.
         db.undefine(key)
         for data in overrides[key]:
-            if distro in data["distro"]:
+            if distro in data["tags"]:
                 if data["value"] is None:
                     continue
                 value = data["value"][-1]

@@ -1,11 +1,11 @@
 GNAT_arches:
-- distro:
+- tags:
   - opensuse-tumbleweed
   - rhel-10
   - rhel-8
   - rhel-9
   value: null
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -15,21 +15,21 @@ GNAT_arches:
       s390x aarch64 ia64 ppc alpha armv3l armv4b armv4l armv4tl armv5tl armv5tel armv5tejl
       armv6l armv6hl armv7l armv7hl armv7hnl armv8l armv8hl armv8hnl armv8hcnl riscv64
     params: null
-- distro:
+- tags:
   - rhel-7
   value:
   - def: i386 i486 i586 i686 pentium3 pentium4 athlon geode x86_64 ia64 ppc ppc64
       ppc64le alpha aarch64
     params: null
 GPRbuild_arches:
-- distro:
+- tags:
   - opensuse-tumbleweed
   - rhel-10
   - rhel-7
   - rhel-8
   - rhel-9
   value: null
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -39,7 +39,7 @@ GPRbuild_arches:
       s390x aarch64
     params: null
 _efi:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -51,7 +51,7 @@ _efi:
   - rhel-9
   value: null
 _efi_srpm_macros_setup:
-- distro:
+- tags:
   - rhel-10
   - rhel-9
   value:
@@ -78,11 +78,11 @@ _efi_srpm_macros_setup:
       \    print(\"%global _efi_alt_arch \" .. alt .. \"\\n\")\n    print(\"%global\
       \ _efi_alt_arch_upper \" .. string.upper(alt) .. \"\\n\")\n  end\n}}"
     params: ''
-- distro:
+- tags:
   - opensuse-tumbleweed
   - rhel-7
   value: null
-- distro:
+- tags:
   - rhel-8
   value:
   - def: "%{expand:%{lua:\n  -- test if our arch matches\n  local function arch(archmacro)\n\
@@ -107,7 +107,7 @@ _efi_srpm_macros_setup:
       \    print(\"%global _efi_alt_arch \" .. alt .. \"\\n\")\n    print(\"%global\
       \ _efi_alt_arch_upper \" .. string.upper(alt) .. \"\\n\")\n  end\n}}"
     params: ''
-- distro:
+- tags:
   - fedora-42
   - fedora-43
   - fedora-rawhide
@@ -136,7 +136,7 @@ _efi_srpm_macros_setup:
       \    print(\"%global _efi_alt_arch \" .. alt .. \"\\n\")\n    print(\"%global\
       \ _efi_alt_arch_upper \" .. string.upper(alt) .. \"\\n\")\n  end\n}}"
     params: ''
-- distro:
+- tags:
   - fedora-41
   value:
   - def: "%{expand:%{lua:\n  -- test if our arch matches\n  local function arch(archmacro)\n\
@@ -165,7 +165,7 @@ _efi_srpm_macros_setup:
       \ _efi_alt_arch_upper \" .. string.upper(alt) .. \"\\n\")\n  end\n}}"
     params: ''
 arm:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -176,25 +176,25 @@ arm:
   - def: armv3l armv4b armv4l armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl armv7l
       armv7hl armv7hnl armv8l armv8hl armv8hnl armv8hcnl
     params: null
-- distro:
+- tags:
   - opensuse-tumbleweed
   value:
   - def: armv3l armv4b armv4l armv4tl armv5b armv5l armv5teb armv5tel armv5tejl armv6l
       armv6hl armv7l armv7hl armv7hnl armv8l armv8hl armv8hnl armv8hcnl
     params: null
-- distro:
+- tags:
   - rhel-8
   value:
   - def: armv3l armv4b armv4l armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl armv7l
       armv7hl armv7hnl
     params: null
-- distro:
+- tags:
   - rhel-7
   value:
   - def: armv3l armv4b armv4l armv4tl armv5tel armv5tejl armv6l armv7l armv7hl armv7hnl
     params: null
 arm32:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -205,18 +205,18 @@ arm32:
   - def: armv3l armv4b armv4l armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl armv7l
       armv7hl armv7hnl armv8l armv8hl armv8hnl armv8hcnl
     params: null
-- distro:
+- tags:
   - opensuse-tumbleweed
   value:
   - def: armv3l armv4b armv4l armv4tl armv5b armv5l armv5teb armv5tel armv5tejl armv6l
       armv6hl armv7l armv7hl armv7hnl armv8l armv8hl armv8hnl armv8hcnl
     params: null
-- distro:
+- tags:
   - rhel-7
   - rhel-8
   value: null
 arm64:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -227,12 +227,12 @@ arm64:
   value:
   - def: aarch64
     params: null
-- distro:
+- tags:
   - rhel-7
   - rhel-8
   value: null
 centos:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -244,7 +244,7 @@ centos:
   - rhel-9
   value: null
 cross:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -256,7 +256,7 @@ cross:
   - rhel-9
   value: null
 efi:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -269,17 +269,17 @@ efi:
       armv6hl armv7l armv7hl armv7hnl armv8l armv8hl armv8hnl armv8hcnl i386 i486
       i586 i686 pentium3 pentium4 athlon geode riscv64
     params: null
-- distro:
+- tags:
   - opensuse-tumbleweed
   - rhel-7
   value: null
 el10:
-- distro:
+- tags:
   - rhel-10
   value:
   - def: '1'
     params: null
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -290,7 +290,7 @@ el10:
   - rhel-9
   value: null
 el11:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -302,7 +302,7 @@ el11:
   - rhel-9
   value: null
 el6:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -314,7 +314,7 @@ el6:
   - rhel-9
   value: null
 el7:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -324,13 +324,13 @@ el7:
   - rhel-8
   - rhel-9
   value: null
-- distro:
+- tags:
   - rhel-7
   value:
   - def: '1'
     params: null
 el8:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -340,13 +340,13 @@ el8:
   - rhel-7
   - rhel-9
   value: null
-- distro:
+- tags:
   - rhel-8
   value:
   - def: '1'
     params: null
 el9:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -356,13 +356,13 @@ el9:
   - rhel-7
   - rhel-8
   value: null
-- distro:
+- tags:
   - rhel-9
   value:
   - def: '1'
     params: null
 epel:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -374,7 +374,7 @@ epel:
   - rhel-9
   value: null
 fc40:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -386,7 +386,7 @@ fc40:
   - rhel-9
   value: null
 fc41:
-- distro:
+- tags:
   - fedora-42
   - fedora-43
   - fedora-rawhide
@@ -396,13 +396,13 @@ fc41:
   - rhel-8
   - rhel-9
   value: null
-- distro:
+- tags:
   - fedora-41
   value:
   - def: '1'
     params: null
 fc42:
-- distro:
+- tags:
   - fedora-41
   - fedora-43
   - fedora-rawhide
@@ -412,13 +412,13 @@ fc42:
   - rhel-8
   - rhel-9
   value: null
-- distro:
+- tags:
   - fedora-42
   value:
   - def: '1'
     params: null
 fc43:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-rawhide
@@ -428,13 +428,13 @@ fc43:
   - rhel-8
   - rhel-9
   value: null
-- distro:
+- tags:
   - fedora-43
   value:
   - def: '1'
     params: null
 fc44:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -444,13 +444,13 @@ fc44:
   - rhel-8
   - rhel-9
   value: null
-- distro:
+- tags:
   - fedora-rawhide
   value:
   - def: '1'
     params: null
 fc45:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -462,42 +462,42 @@ fc45:
   - rhel-9
   value: null
 fedora:
-- distro:
+- tags:
   - opensuse-tumbleweed
   - rhel-10
   - rhel-7
   - rhel-8
   - rhel-9
   value: null
-- distro:
+- tags:
   - fedora-43
   value:
   - def: '43'
     params: null
-- distro:
+- tags:
   - fedora-rawhide
   value:
   - def: '44'
     params: null
-- distro:
+- tags:
   - fedora-42
   value:
   - def: '42'
     params: null
-- distro:
+- tags:
   - fedora-41
   value:
   - def: '41'
     params: null
 fpc_arches:
-- distro:
+- tags:
   - opensuse-tumbleweed
   - rhel-10
   - rhel-7
   - rhel-8
   - rhel-9
   value: null
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -508,7 +508,7 @@ fpc_arches:
       armv8hnl armv8hcnl x86_64 ppc64le aarch64
     params: null
 gccgo_arches:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -519,30 +519,30 @@ gccgo_arches:
   value:
   - def: mips mipsel mipsr6 mipsr6el mips64 mips64el mips64r6 mips64r6el
     params: null
-- distro:
+- tags:
   - opensuse-tumbleweed
   - rhel-7
   value: null
 go_arches:
-- distro:
+- tags:
   - rhel-10
   - rhel-9
   value:
   - def: x86_64 aarch64 ppc64le s390x mips mipsel mipsr6 mipsr6el mips64 mips64el
       mips64r6 mips64r6el
     params: null
-- distro:
+- tags:
   - opensuse-tumbleweed
   - rhel-7
   value: null
-- distro:
+- tags:
   - rhel-8
   value:
   - def: x86_64 armv3l armv4b armv4l armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl
       armv7l armv7hl armv7hnl aarch64 ppc64le s390x mips mipsel mipsr6 mipsr6el mips64
       mips64el mips64r6 mips64r6el
     params: null
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -554,23 +554,23 @@ go_arches:
       mipsr6el mips64 mips64el mips64r6 mips64r6el
     params: null
 golang_arches:
-- distro:
+- tags:
   - rhel-10
   - rhel-9
   value:
   - def: x86_64 aarch64 ppc64le s390x
     params: null
-- distro:
+- tags:
   - opensuse-tumbleweed
   - rhel-7
   value: null
-- distro:
+- tags:
   - rhel-8
   value:
   - def: x86_64 armv3l armv4b armv4l armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl
       armv7l armv7hl armv7hnl aarch64 ppc64le s390x
     params: null
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -581,7 +581,7 @@ golang_arches:
       armv8hl armv8hnl armv8hcnl aarch64 ppc64le s390x riscv64
     params: null
 golang_arches_future:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -592,19 +592,19 @@ golang_arches_future:
       armv7l armv7hl armv7hnl armv8l armv8hl armv8hnl armv8hcnl aarch64 ppc64le s390x
       riscv64
     params: null
-- distro:
+- tags:
   - opensuse-tumbleweed
   - rhel-7
   - rhel-8
   value: null
-- distro:
+- tags:
   - rhel-9
   value:
   - def: x86_64 armv3l armv4b armv4l armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl
       armv7l armv7hl armv7hnl armv8l armv8hl armv8hnl armv8hcnl aarch64 ppc64le s390x
     params: null
 gometa:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -627,12 +627,12 @@ gometa:
 
       '
     params: az:svifL
-- distro:
+- tags:
   - opensuse-tumbleweed
   - rhel-7
   value: null
 grafana_arches:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -644,7 +644,7 @@ grafana_arches:
   - rhel-9
   value: null
 grafanapcp_arches:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -656,7 +656,7 @@ grafanapcp_arches:
   - rhel-9
   value: null
 grub2_exclude_arches:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -668,7 +668,7 @@ grub2_exclude_arches:
   - rhel-9
   value: null
 hare_arches:
-- distro:
+- tags:
   - fedora-41
   - opensuse-tumbleweed
   - rhel-10
@@ -676,7 +676,7 @@ hare_arches:
   - rhel-8
   - rhel-9
   value: null
-- distro:
+- tags:
   - fedora-42
   - fedora-43
   - fedora-rawhide
@@ -684,7 +684,7 @@ hare_arches:
   - def: x86_64 aarch64 riscv64
     params: null
 ix86:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -698,19 +698,19 @@ ix86:
   - def: i386 i486 i586 i686 pentium3 pentium4 athlon geode
     params: null
 java_arches:
-- distro:
+- tags:
   - fedora-41
   - rhel-10
   - rhel-9
   value:
   - def: aarch64 ppc64le s390x x86_64
     params: null
-- distro:
+- tags:
   - opensuse-tumbleweed
   - rhel-7
   - rhel-8
   value: null
-- distro:
+- tags:
   - fedora-42
   - fedora-43
   - fedora-rawhide
@@ -718,23 +718,23 @@ java_arches:
   - def: aarch64 ppc64le s390x x86_64 riscv64
     params: null
 kernel_arches:
-- distro:
+- tags:
   - rhel-10
   - rhel-9
   value:
   - def: x86_64 s390x ppc64le aarch64
     params: null
-- distro:
+- tags:
   - opensuse-tumbleweed
   - rhel-7
   value: null
-- distro:
+- tags:
   - rhel-8
   value:
   - def: x86_64 s390x ppc64le aarch64 armv3l armv4b armv4l armv4tl armv5tl armv5tel
       armv5tejl armv6l armv6hl armv7l armv7hl armv7hnl
     params: null
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -745,7 +745,7 @@ kernel_arches:
       riscv64
     params: null
 ldc_arches:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -757,11 +757,11 @@ ldc_arches:
       armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl armv7l armv7hl armv7hnl armv8l
       armv8hl armv8hnl armv8hcnl aarch64
     params: null
-- distro:
+- tags:
   - opensuse-tumbleweed
   - rhel-7
   value: null
-- distro:
+- tags:
   - rhel-8
   value:
   - def: i386 i486 i586 i686 pentium3 pentium4 athlon geode x86_64 armv3l armv4b armv4l
@@ -769,7 +769,7 @@ ldc_arches:
       ppc64p7 ppc64le
     params: null
 lua:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -781,7 +781,7 @@ lua:
   - rhel-9
   value: null
 mips:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -793,11 +793,11 @@ mips:
   value:
   - def: mips mipsel mipsr6 mipsr6el mips64 mips64el mips64r6 mips64r6el
     params: null
-- distro:
+- tags:
   - rhel-7
   value: null
 mips32:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -809,11 +809,11 @@ mips32:
   value:
   - def: mips mipsel mipsr6 mipsr6el
     params: null
-- distro:
+- tags:
   - rhel-7
   value: null
 mips64:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -825,11 +825,11 @@ mips64:
   value:
   - def: mips64 mips64el mips64r6 mips64r6el
     params: null
-- distro:
+- tags:
   - rhel-7
   value: null
 mono_arches:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -842,17 +842,17 @@ mono_arches:
       armv7hl armv7hnl armv8l armv8hl armv8hnl armv8hcnl aarch64 alpha s390x ppc ppc64
       ppc64le
     params: null
-- distro:
+- tags:
   - opensuse-tumbleweed
   value: null
-- distro:
+- tags:
   - rhel-8
   value:
   - def: i386 i486 i586 i686 pentium3 pentium4 athlon geode x86_64 sparc sparcv9 ia64
       armv3l armv4b armv4l armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl armv7l
       armv7hl armv7hnl aarch64 alpha s390x ppc ppc64 ppc64le
     params: null
-- distro:
+- tags:
   - rhel-7
   value:
   - def: i386 i486 i586 i686 pentium3 pentium4 athlon geode x86_64 sparc sparcv9 ia64
@@ -860,7 +860,7 @@ mono_arches:
       aarch64 alpha s390x ppc ppc64 ppc64le
     params: null
 no64bit:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -872,7 +872,7 @@ no64bit:
   - rhel-9
   value: null
 nodejs_arches:
-- distro:
+- tags:
   - fedora-41
   - rhel-10
   - rhel-9
@@ -881,17 +881,17 @@ nodejs_arches:
       armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl armv7l armv7hl armv7hnl armv8l
       armv8hl armv8hnl armv8hcnl aarch64 ppc64 ppc64p7 ppc64le s390x
     params: null
-- distro:
+- tags:
   - opensuse-tumbleweed
   value: null
-- distro:
+- tags:
   - rhel-8
   value:
   - def: i386 i486 i586 i686 pentium3 pentium4 athlon geode x86_64 armv3l armv4b armv4l
       armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl armv7l armv7hl armv7hnl aarch64
       ppc64 ppc64p7 ppc64le s390x
     params: null
-- distro:
+- tags:
   - fedora-42
   - fedora-43
   - fedora-rawhide
@@ -900,39 +900,39 @@ nodejs_arches:
       armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl armv7l armv7hl armv7hnl armv8l
       armv8hl armv8hnl armv8hcnl aarch64 ppc64 ppc64p7 ppc64le s390x riscv64
     params: null
-- distro:
+- tags:
   - rhel-7
   value:
   - def: i386 i486 i586 i686 pentium3 pentium4 athlon geode x86_64 armv3l armv4b armv4l
       armv4tl armv5tel armv5tejl armv6l armv7l armv7hl armv7hnl aarch64 ppc64le s390x
     params: null
 ocaml_native_compiler:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - rhel-10
   value:
   - def: aarch64 ppc64 ppc64p7 ppc64le riscv64 s390x x86_64
     params: null
-- distro:
+- tags:
   - opensuse-tumbleweed
   - rhel-7
   value: null
-- distro:
+- tags:
   - rhel-8
   value:
   - def: aarch64 armv3l armv4b armv4l armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl
       armv7l armv7hl armv7hnl i386 i486 i586 i686 pentium3 pentium4 athlon geode ppc
       ppc64 ppc64le riscv64 s390x sparc sparcv9 x86_64
     params: null
-- distro:
+- tags:
   - fedora-43
   - fedora-rawhide
   value:
   - def: aarch64 ppc64 ppc64p7 ppc64le riscv64 s390x x86_64 x86_64_v2 x86_64_v3 x86_64_v4
       amd64 em64t
     params: null
-- distro:
+- tags:
   - rhel-9
   value:
   - def: aarch64 armv3l armv4b armv4l armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl
@@ -941,7 +941,7 @@ ocaml_native_compiler:
       x86_64
     params: null
 openblas_arches:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -951,11 +951,11 @@ openblas_arches:
   - def: x86_64 i386 i486 i586 i686 pentium3 pentium4 athlon geode armv7hl ppc64 ppc64p7
       ppc64le aarch64 s390x riscv64
     params: null
-- distro:
+- tags:
   - opensuse-tumbleweed
   - rhel-7
   value: null
-- distro:
+- tags:
   - rhel-8
   - rhel-9
   value:
@@ -963,7 +963,7 @@ openblas_arches:
       ppc64le aarch64 s390x
     params: null
 power64:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -977,13 +977,13 @@ power64:
   - def: ppc64 ppc64p7 ppc64le
     params: null
 qt5_qtwebengine_arches:
-- distro:
+- tags:
   - opensuse-tumbleweed
   - rhel-10
   - rhel-7
   - rhel-8
   value: null
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -993,7 +993,7 @@ qt5_qtwebengine_arches:
       armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl armv7l armv7hl armv7hnl armv8l
       armv8hl armv8hnl armv8hcnl aarch64 mips mipsel mips64el riscv64
     params: null
-- distro:
+- tags:
   - rhel-9
   value:
   - def: i386 i486 i586 i686 pentium3 pentium4 athlon geode x86_64 armv3l armv4b armv4l
@@ -1001,19 +1001,19 @@ qt5_qtwebengine_arches:
       armv8hl armv8hnl armv8hcnl aarch64 mips mipsel mips64el
     params: null
 qt6_qtwebengine_arches:
-- distro:
+- tags:
   - fedora-41
   - rhel-10
   value:
   - def: x86_64 aarch64
     params: null
-- distro:
+- tags:
   - opensuse-tumbleweed
   - rhel-7
   - rhel-8
   - rhel-9
   value: null
-- distro:
+- tags:
   - fedora-42
   - fedora-43
   - fedora-rawhide
@@ -1021,35 +1021,35 @@ qt6_qtwebengine_arches:
   - def: x86_64 aarch64 ppc64le
     params: null
 rhel:
-- distro:
+- tags:
   - rhel-10
   value:
   - def: '10'
     params: null
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
   - fedora-rawhide
   - opensuse-tumbleweed
   value: null
-- distro:
+- tags:
   - rhel-8
   value:
   - def: '8'
     params: null
-- distro:
+- tags:
   - rhel-7
   value:
   - def: '7'
     params: null
-- distro:
+- tags:
   - rhel-9
   value:
   - def: '9'
     params: null
 riscv:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -1060,12 +1060,12 @@ riscv:
   value:
   - def: riscv32 riscv64 riscv128
     params: null
-- distro:
+- tags:
   - rhel-7
   - rhel-8
   value: null
 riscv128:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -1076,12 +1076,12 @@ riscv128:
   value:
   - def: riscv128
     params: null
-- distro:
+- tags:
   - rhel-7
   - rhel-8
   value: null
 riscv32:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -1092,12 +1092,12 @@ riscv32:
   value:
   - def: riscv32
     params: null
-- distro:
+- tags:
   - rhel-7
   - rhel-8
   value: null
 riscv64:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -1108,12 +1108,12 @@ riscv64:
   value:
   - def: riscv64
     params: null
-- distro:
+- tags:
   - rhel-7
   - rhel-8
   value: null
 rust_arches:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -1124,17 +1124,17 @@ rust_arches:
   - def: x86_64 i386 i486 i586 i686 pentium3 pentium4 athlon geode armv7hl aarch64
       ppc64 ppc64le riscv64 s390x
     params: null
-- distro:
+- tags:
   - opensuse-tumbleweed
   - rhel-7
   value: null
-- distro:
+- tags:
   - rhel-8
   value:
   - def: x86_64 i686 armv7hl aarch64 ppc64 ppc64le s390x
     params: null
 sparc:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -1148,7 +1148,7 @@ sparc:
   - def: sparc sparcv8 sparcv9 sparcv9v sparc64 sparc64v
     params: null
 suse_version:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -1158,13 +1158,13 @@ suse_version:
   - rhel-8
   - rhel-9
   value: null
-- distro:
+- tags:
   - opensuse-tumbleweed
   value:
   - def: '1699'
     params: null
 use_system_admesh:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -1176,7 +1176,7 @@ use_system_admesh:
   - rhel-9
   value: null
 with_alt_arch:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -1188,7 +1188,7 @@ with_alt_arch:
   - rhel-9
   value: null
 with_bootstrap:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -1200,7 +1200,7 @@ with_bootstrap:
   - rhel-9
   value: null
 with_cython:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -1212,7 +1212,7 @@ with_cython:
   - rhel-9
   value: null
 with_cython_compile:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -1224,7 +1224,7 @@ with_cython_compile:
   - rhel-9
   value: null
 with_debug_valgrind:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -1236,7 +1236,7 @@ with_debug_valgrind:
   - rhel-9
   value: null
 with_dnf5:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -1248,7 +1248,7 @@ with_dnf5:
   - rhel-9
   value: null
 with_docs:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -1260,7 +1260,7 @@ with_docs:
   - rhel-9
   value: null
 with_optimized_init:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -1272,7 +1272,7 @@ with_optimized_init:
   - rhel-9
   value: null
 with_spec_integration:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -1284,7 +1284,7 @@ with_spec_integration:
   - rhel-9
   value: null
 with_x86_debug:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -1296,7 +1296,7 @@ with_x86_debug:
   - rhel-9
   value: null
 x86_64:
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43
@@ -1306,20 +1306,20 @@ x86_64:
   value:
   - def: x86_64 x86_64_v2 x86_64_v3 x86_64_v4 amd64 em64t
     params: null
-- distro:
+- tags:
   - rhel-7
   - rhel-8
   - rhel-9
   value: null
 zig_arches:
-- distro:
+- tags:
   - opensuse-tumbleweed
   - rhel-10
   - rhel-7
   - rhel-8
   - rhel-9
   value: null
-- distro:
+- tags:
   - fedora-41
   - fedora-42
   - fedora-43

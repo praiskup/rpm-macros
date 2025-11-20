@@ -53,7 +53,7 @@ def merge_yaml_files(data_dir="./data"):
         # Build the final merged structure
         for value_dump, basenames in values_by_content.items():
             merged_data[key].append({
-                'distro': sorted(basenames),
+                'tags': sorted(basenames),
                 'value': yaml.safe_load(value_dump)
             })
 
