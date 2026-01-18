@@ -21,6 +21,7 @@ FEDORA_LAST = 45
 
 
 def _buildroot(mock_root):
+    mock_root = mock_root.replace("eol/", "")
     return f'/var/lib/mock/{mock_root}/root'
 
 
@@ -78,8 +79,8 @@ def _main():
         try:
             macro_def = db[name]
             if name == "gometa":
-                macro_defs["gometa"] = [{
-                    "def": (
+                macro_defs["gometa"] = {
+                    "value": (
                         'BuildRequires: go-rpm-macros\n'
                         '%if "%{-m}" == ""\n'
                         'ExclusiveArch: %{golang_arches}\n'
@@ -88,18 +89,18 @@ def _main():
                         '%endif\n'
                     ),
                     "params": "az:svifL",
-                }]
+                }
                 continue
 
             if macro_def.parametric:
-                macro_defs[name] = db[name].dump_def()
+                macro_defs[name] = db[name].dump_def()[-1]
                 continue
             value = expand_non_parametric_macro_norpm(name, db)
             if '%' in value:
                 # Is there '%lua' inside?
                 value = expand_non_parametric_macro_rpm(name, opts.root)
             # only one item in array, no over-definitions here.
-            macro_defs[name] = [{'def': value, 'params': None}]
+            macro_defs[name] = {'value': value, 'params': None}
         except KeyError:
             macro_defs[name] = None
     print(yaml.dump(macro_defs, indent=2, default_flow_style=False))

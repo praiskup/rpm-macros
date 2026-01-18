@@ -6,6 +6,8 @@ Combine files in data/ into a single file.
 
 from collections import defaultdict
 import os
+import json
+
 import yaml
 
 
@@ -54,7 +56,7 @@ def merge_yaml_files(data_dir="./data"):
         for value_dump, basenames in values_by_content.items():
             merged_data[key].append({
                 'tags': sorted(basenames),
-                'value': yaml.safe_load(value_dump)
+                'definition': yaml.safe_load(value_dump)
             })
 
     return dict(merged_data)
@@ -67,7 +69,7 @@ if __name__ == "__main__":
         # Check if the result is empty
         if merged_result:
             # Use sort_keys=False to maintain the order of keys from the first file found
-            print(yaml.dump(merged_result, sort_keys=True))
+            print(json.dumps(merged_result, sort_keys=True, indent=2))
         else:
             print("No data to merge. Check if files exist and are correctly formatted.")
 

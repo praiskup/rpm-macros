@@ -18,7 +18,7 @@ Howto
 $ norpm-conditions-for-arch-statements  --specfile-dir rpm-specs > used-macros.json
 $ # combine used-macros.json into data-builder-architecture-macros.json
 $ ./extract-all-distros.sh
-$ ./combine-distros.py > data-builder-architecture.yaml
+$ ./combine-distros.py > data-builder-architecture.json
 $ # commit changes
 ```
 

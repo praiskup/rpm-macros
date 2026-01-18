@@ -1,15 +1,16 @@
 GNAT_arches:
-- def: i386 i486 i586 i686 pentium3 pentium4 athlon geode x86_64 ppc64 ppc64p7 ppc64le
-    s390x aarch64 ia64 ppc alpha armv3l armv4b armv4l armv4tl armv5tl armv5tel armv5tejl
-    armv6l armv6hl armv7l armv7hl armv7hnl armv8l armv8hl armv8hnl armv8hcnl riscv64
   params: null
+  value: i386 i486 i586 i686 pentium3 pentium4 athlon geode x86_64 ppc64 ppc64p7 ppc64le
+    s390x aarch64 riscv64 ia64 ppc alpha armv3l armv4b armv4l armv4tl armv5tl armv5tel
+    armv5tejl armv6l armv6hl armv7l armv7hl armv7hnl armv8l armv8hl armv8hnl armv8hcnl
 GPRbuild_arches:
-- def: i386 i486 i586 i686 pentium3 pentium4 athlon geode x86_64 ppc64 ppc64p7 ppc64le
-    s390x aarch64
   params: null
+  value: i386 i486 i586 i686 pentium3 pentium4 athlon geode x86_64 ppc64 ppc64p7 ppc64le
+    s390x aarch64 riscv64
 _efi: null
 _efi_srpm_macros_setup:
-- def: "%{expand:%{lua:\n  -- test if our arch matches\n  local function arch(archmacro)\n\
+  params: ''
+  value: "%{expand:%{lua:\n  -- test if our arch matches\n  local function arch(archmacro)\n\
     \    local target = rpm.expand(\" %{_target_cpu} \")\n    local arches = rpm.expand(\"\
     \ \" .. archmacro .. \" \")\n    local match = string.match(arches, target)\n\
     \    return (match ~= nil)\n  end\n  -- give us the arch...\n  local function\
@@ -32,25 +33,24 @@ _efi_srpm_macros_setup:
     \ 0\\n\")\n    else\n      print(\"%global _efi_has_alt_arch 1\\n\")\n    end\n\
     \    print(\"%global _efi_alt_arch \" .. alt .. \"\\n\")\n    print(\"%global\
     \ _efi_alt_arch_upper \" .. string.upper(alt) .. \"\\n\")\n  end\n}}"
-  params: ''
 arm:
-- def: armv3l armv4b armv4l armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl armv7l
-    armv7hl armv7hnl armv8l armv8hl armv8hnl armv8hcnl
   params: null
+  value: armv3l armv4b armv4l armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl armv7l
+    armv7hl armv7hnl armv8l armv8hl armv8hnl armv8hcnl
 arm32:
-- def: armv3l armv4b armv4l armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl armv7l
+  params: null
+  value: armv3l armv4b armv4l armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl armv7l
     armv7hl armv7hnl armv8l armv8hl armv8hnl armv8hcnl
-  params: null
 arm64:
-- def: aarch64
   params: null
+  value: aarch64
 centos: null
 cross: null
 efi:
-- def: x86_64 aarch64 armv3l armv4b armv4l armv4tl armv5tl armv5tel armv5tejl armv6l
+  params: null
+  value: x86_64 aarch64 armv3l armv4b armv4l armv4tl armv5tl armv5tel armv5tejl armv6l
     armv6hl armv7l armv7hl armv7hnl armv8l armv8hl armv8hnl armv8hcnl i386 i486 i586
     i686 pentium3 pentium4 athlon geode riscv64
-  params: null
 el10: null
 el11: null
 el6: null
@@ -62,39 +62,40 @@ fc40: null
 fc41: null
 fc42: null
 fc43:
-- def: '1'
   params: null
+  value: '1'
 fc44: null
 fc45: null
 fedora:
-- def: '43'
   params: null
+  value: '43'
 fpc_arches:
-- def: i386 i486 i586 i686 pentium3 pentium4 athlon geode armv3l armv4b armv4l armv4tl
+  params: null
+  value: i386 i486 i586 i686 pentium3 pentium4 athlon geode armv3l armv4b armv4l armv4tl
     armv5tl armv5tel armv5tejl armv6l armv6hl armv7l armv7hl armv7hnl armv8l armv8hl
     armv8hnl armv8hcnl x86_64 ppc64le aarch64
-  params: null
 gccgo_arches:
-- def: mips mipsel mipsr6 mipsr6el mips64 mips64el mips64r6 mips64r6el
   params: null
+  value: mips mipsel mipsr6 mipsr6el mips64 mips64el mips64r6 mips64r6el
 go_arches:
-- def: i386 i486 i586 i686 pentium3 pentium4 athlon geode x86_64 armv3l armv4b armv4l
+  params: null
+  value: i386 i486 i586 i686 pentium3 pentium4 athlon geode x86_64 armv3l armv4b armv4l
     armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl armv7l armv7hl armv7hnl armv8l
     armv8hl armv8hnl armv8hcnl aarch64 ppc64le s390x riscv64 mips mipsel mipsr6 mipsr6el
     mips64 mips64el mips64r6 mips64r6el
-  params: null
 golang_arches:
-- def: i386 i486 i586 i686 pentium3 pentium4 athlon geode x86_64 armv3l armv4b armv4l
+  params: null
+  value: i386 i486 i586 i686 pentium3 pentium4 athlon geode x86_64 armv3l armv4b armv4l
     armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl armv7l armv7hl armv7hnl armv8l
     armv8hl armv8hnl armv8hcnl aarch64 ppc64le s390x riscv64
-  params: null
 golang_arches_future:
-- def: x86_64 armv3l armv4b armv4l armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl
+  params: null
+  value: x86_64 armv3l armv4b armv4l armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl
     armv7l armv7hl armv7hnl armv8l armv8hl armv8hnl armv8hcnl aarch64 ppc64le s390x
     riscv64
-  params: null
 gometa:
-- def: 'BuildRequires: go-rpm-macros
+  params: az:svifL
+  value: 'BuildRequires: go-rpm-macros
 
     %if "%{-m}" == ""
 
@@ -107,90 +108,89 @@ gometa:
     %endif
 
     '
-  params: az:svifL
 grafana_arches: null
 grafanapcp_arches: null
 grub2_exclude_arches: null
 hare_arches:
-- def: x86_64 aarch64 riscv64
   params: null
+  value: x86_64 aarch64 riscv64
 ix86:
-- def: i386 i486 i586 i686 pentium3 pentium4 athlon geode
   params: null
+  value: i386 i486 i586 i686 pentium3 pentium4 athlon geode
 java_arches:
-- def: aarch64 ppc64le s390x x86_64 riscv64
   params: null
+  value: aarch64 ppc64le s390x x86_64 riscv64
 kernel_arches:
-- def: x86_64 s390x ppc64le aarch64 armv3l armv4b armv4l armv4tl armv5tl armv5tel
+  params: null
+  value: x86_64 s390x ppc64le aarch64 armv3l armv4b armv4l armv4tl armv5tl armv5tel
     armv5tejl armv6l armv6hl armv7l armv7hl armv7hnl armv8l armv8hl armv8hnl armv8hcnl
     riscv64
-  params: null
 ldc_arches:
-- def: i386 i486 i586 i686 pentium3 pentium4 athlon geode x86_64 armv3l armv4b armv4l
+  params: null
+  value: i386 i486 i586 i686 pentium3 pentium4 athlon geode x86_64 armv3l armv4b armv4l
     armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl armv7l armv7hl armv7hnl armv8l
     armv8hl armv8hnl armv8hcnl aarch64
-  params: null
 lua: null
 mips:
-- def: mips mipsel mipsr6 mipsr6el mips64 mips64el mips64r6 mips64r6el
   params: null
+  value: mips mipsel mipsr6 mipsr6el mips64 mips64el mips64r6 mips64r6el
 mips32:
-- def: mips mipsel mipsr6 mipsr6el
   params: null
+  value: mips mipsel mipsr6 mipsr6el
 mips64:
-- def: mips64 mips64el mips64r6 mips64r6el
   params: null
+  value: mips64 mips64el mips64r6 mips64r6el
 mono_arches:
-- def: i386 i486 i586 i686 pentium3 pentium4 athlon geode x86_64 sparc sparcv9 ia64
+  params: null
+  value: i386 i486 i586 i686 pentium3 pentium4 athlon geode x86_64 sparc sparcv9 ia64
     armv3l armv4b armv4l armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl armv7l
     armv7hl armv7hnl armv8l armv8hl armv8hnl armv8hcnl aarch64 alpha s390x ppc ppc64
     ppc64le
-  params: null
 no64bit: null
 nodejs_arches:
-- def: i386 i486 i586 i686 pentium3 pentium4 athlon geode x86_64 armv3l armv4b armv4l
+  params: null
+  value: i386 i486 i586 i686 pentium3 pentium4 athlon geode x86_64 armv3l armv4b armv4l
     armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl armv7l armv7hl armv7hnl armv8l
     armv8hl armv8hnl armv8hcnl aarch64 ppc64 ppc64p7 ppc64le s390x riscv64
-  params: null
 ocaml_native_compiler:
-- def: aarch64 ppc64 ppc64p7 ppc64le riscv64 s390x x86_64 x86_64_v2 x86_64_v3 x86_64_v4
+  params: null
+  value: aarch64 ppc64 ppc64p7 ppc64le riscv64 s390x x86_64 x86_64_v2 x86_64_v3 x86_64_v4
     amd64 em64t
-  params: null
 openblas_arches:
-- def: x86_64 i386 i486 i586 i686 pentium3 pentium4 athlon geode armv7hl ppc64 ppc64p7
+  params: null
+  value: x86_64 i386 i486 i586 i686 pentium3 pentium4 athlon geode armv7hl ppc64 ppc64p7
     ppc64le aarch64 s390x riscv64
-  params: null
 power64:
-- def: ppc64 ppc64p7 ppc64le
   params: null
+  value: ppc64 ppc64p7 ppc64le
 qt5_qtwebengine_arches:
-- def: i386 i486 i586 i686 pentium3 pentium4 athlon geode x86_64 armv3l armv4b armv4l
+  params: null
+  value: i386 i486 i586 i686 pentium3 pentium4 athlon geode x86_64 armv3l armv4b armv4l
     armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl armv7l armv7hl armv7hnl armv8l
     armv8hl armv8hnl armv8hcnl aarch64 mips mipsel mips64el riscv64
-  params: null
 qt6_qtwebengine_arches:
-- def: x86_64 aarch64 ppc64le
   params: null
+  value: x86_64 aarch64 ppc64le
 rhel: null
 riscv:
-- def: riscv32 riscv64 riscv128
   params: null
+  value: riscv32 riscv64 riscv128
 riscv128:
-- def: riscv128
   params: null
+  value: riscv128
 riscv32:
-- def: riscv32
   params: null
+  value: riscv32
 riscv64:
-- def: riscv64
   params: null
+  value: riscv64
 rust_arches:
-- def: x86_64 i386 i486 i586 i686 pentium3 pentium4 athlon geode armv7hl aarch64 ppc64
-    ppc64le riscv64 s390x
   params: null
+  value: x86_64 i386 i486 i586 i686 pentium3 pentium4 athlon geode armv7hl aarch64
+    ppc64 ppc64le riscv64 s390x
 sparc:
-- def: sparc sparcv8 sparcv9 sparcv9v sparc64 sparc64v
   params: null
+  value: sparc sparcv8 sparcv9 sparcv9v sparc64 sparc64v
 suse_version: null
 use_system_admesh: null
 with_alt_arch: null
@@ -204,9 +204,9 @@ with_optimized_init: null
 with_spec_integration: null
 with_x86_debug: null
 x86_64:
-- def: x86_64 x86_64_v2 x86_64_v3 x86_64_v4 amd64 em64t
   params: null
+  value: x86_64 x86_64_v2 x86_64_v3 x86_64_v4 amd64 em64t
 zig_arches:
-- def: x86_64 aarch64 riscv64 mips64 mips64el mips64r6 mips64r6el
   params: null
+  value: x86_64 aarch64 riscv64 mips64 mips64el mips64r6 mips64r6el
 

@@ -1,13 +1,13 @@
 GNAT_arches:
-- def: i386 i486 i586 i686 pentium3 pentium4 athlon geode x86_64 ia64 ppc ppc64 ppc64le
-    alpha aarch64
   params: null
+  value: i386 i486 i586 i686 pentium3 pentium4 athlon geode x86_64 ia64 ppc ppc64
+    ppc64le alpha aarch64
 GPRbuild_arches: null
 _efi: null
 _efi_srpm_macros_setup: null
 arm:
-- def: armv3l armv4b armv4l armv4tl armv5tel armv5tejl armv6l armv7l armv7hl armv7hnl
   params: null
+  value: armv3l armv4b armv4l armv4tl armv5tel armv5tejl armv6l armv7l armv7hl armv7hnl
 arm32: null
 arm64: null
 centos: null
@@ -17,8 +17,8 @@ el10: null
 el11: null
 el6: null
 el7:
-- def: '1'
   params: null
+  value: '1'
 el8: null
 el9: null
 epel: null
@@ -40,8 +40,8 @@ grafanapcp_arches: null
 grub2_exclude_arches: null
 hare_arches: null
 ix86:
-- def: i386 i486 i586 i686 pentium3 pentium4 athlon geode
   params: null
+  value: i386 i486 i586 i686 pentium3 pentium4 athlon geode
 java_arches: null
 kernel_arches: null
 ldc_arches: null
@@ -50,33 +50,33 @@ mips: null
 mips32: null
 mips64: null
 mono_arches:
-- def: i386 i486 i586 i686 pentium3 pentium4 athlon geode x86_64 sparc sparcv9 ia64
+  params: null
+  value: i386 i486 i586 i686 pentium3 pentium4 athlon geode x86_64 sparc sparcv9 ia64
     armv3l armv4b armv4l armv4tl armv5tel armv5tejl armv6l armv7l armv7hl armv7hnl
     aarch64 alpha s390x ppc ppc64 ppc64le
-  params: null
 no64bit: null
 nodejs_arches:
-- def: i386 i486 i586 i686 pentium3 pentium4 athlon geode x86_64 armv3l armv4b armv4l
-    armv4tl armv5tel armv5tejl armv6l armv7l armv7hl armv7hnl aarch64 ppc64le s390x
   params: null
+  value: i386 i486 i586 i686 pentium3 pentium4 athlon geode x86_64 armv3l armv4b armv4l
+    armv4tl armv5tel armv5tejl armv6l armv7l armv7hl armv7hnl aarch64 ppc64le s390x
 ocaml_native_compiler: null
 openblas_arches: null
 power64:
-- def: ppc64 ppc64p7 ppc64le
   params: null
+  value: ppc64 ppc64p7 ppc64le
 qt5_qtwebengine_arches: null
 qt6_qtwebengine_arches: null
 rhel:
-- def: '7'
   params: null
+  value: '7'
 riscv: null
 riscv128: null
 riscv32: null
 riscv64: null
 rust_arches: null
 sparc:
-- def: sparc sparcv8 sparcv9 sparcv9v sparc64 sparc64v
   params: null
+  value: sparc sparcv8 sparcv9 sparcv9v sparc64 sparc64v
 suse_version: null
 use_system_admesh: null
 with_alt_arch: null
