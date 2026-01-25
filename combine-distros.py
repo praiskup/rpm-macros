@@ -23,9 +23,7 @@ def merge_yaml_files(data_dir="./data"):
 
     merged_data = defaultdict(list)
 
-    # Get all .yaml files in the specified directory
     file_list = [f for f in os.listdir(data_dir) if f.endswith('.yaml')]
-
     if not file_list:
         print(f"No .yaml files found in '{data_dir}'.")
         return {}
@@ -38,7 +36,7 @@ def merge_yaml_files(data_dir="./data"):
         with open(filepath, 'r', encoding="utf8") as f:
             file_data[basename] = yaml.safe_load(f)
 
-    # Process each key from each file
+    # Process each macro name from each file
     all_keys = set()
     for data in file_data.values():
         if isinstance(data, dict):
@@ -50,7 +48,13 @@ def merge_yaml_files(data_dir="./data"):
         for basename, data in file_data.items():
             if isinstance(data, dict) and key in data:
                 value = data[key]
-                values_by_content[yaml.dump(value)].append(basename)
+                tags = values_by_content[yaml.dump(value)]
+                tags.append(basename)
+                family, version = basename.rsplit("-", 1)
+                if family == "rhel+epel" and int(version) > 7:
+                    tags.append("epel-" + version)
+                elif family == "centos+epel" and int(version) <= 7:
+                    tags.append("epel-" + version)
 
         # Build the final merged structure
         for value_dump, basenames in values_by_content.items():
@@ -61,14 +65,11 @@ def merge_yaml_files(data_dir="./data"):
 
     return dict(merged_data)
 
-# Example of how to use the function
+
 if __name__ == "__main__":
     try:
         merged_result = merge_yaml_files()
-
-        # Check if the result is empty
         if merged_result:
-            # Use sort_keys=False to maintain the order of keys from the first file found
             print(json.dumps(merged_result, sort_keys=True, indent=2))
         else:
             print("No data to merge. Check if files exist and are correctly formatted.")

@@ -8,6 +8,7 @@ files.
 import argparse
 import copy
 import json
+import os
 import subprocess
 
 import yaml
@@ -22,7 +23,9 @@ FEDORA_LAST = 45
 
 def _buildroot(mock_root):
     mock_root = mock_root.replace("eol/", "")
-    return f'/var/lib/mock/{mock_root}/root'
+    directory = f'/var/lib/mock/{mock_root}/root'
+    assert os.path.exists(directory)
+    return directory
 
 
 def expand_non_parametric_macro_norpm(macro_name, old_db):

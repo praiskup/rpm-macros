@@ -15,10 +15,7 @@ distros=(
     centos-stream-9
     centos-stream+epel-next-8
     centos-stream+epel-next-9
-    epel-10
-    epel-7
-    epel-8
-    epel-9
+    centos+epel-7
     fedora-42
     fedora-43
     fedora-eln
@@ -38,12 +35,14 @@ distros=(
     rhel+epel-10
 )
 
+# EPEL-8+ is RHEL+EPEL-8
+
 for distro in "${distros[@]}"; do
     mock_opt=$distro-$arch
     case $distro in
-        epel-7)
-            mock_opt=eol/$distro-$arch
-            ;;
+    centos+epel-7)
+        mock_opt=eol/$mock_opt
+        ;;
     esac
     mock -r "$mock_opt" --init
     ./extract_macro_definitions.py --macro-list "$input" --root "$mock_opt" > "data/$distro.yaml"
