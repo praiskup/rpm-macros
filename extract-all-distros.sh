@@ -32,6 +32,8 @@ distros=(
     rhel-7
     rhel-8
     rhel-9
+    rhel+epel-8
+    rhel+epel-9
     rhel+epel-10
 )
 
@@ -44,6 +46,8 @@ for distro in "${distros[@]}"; do
         mock_opt=eol/$mock_opt
         ;;
     esac
+
+    test -f "data/$distro.yaml" && continue
     mock -r "$mock_opt" --init
     ./extract_macro_definitions.py --macro-list "$input" --root "$mock_opt" > "data/$distro.yaml"
 done

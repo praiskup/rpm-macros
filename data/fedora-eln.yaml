@@ -1,0 +1,190 @@
+GNAT_arches: null
+GPRbuild_arches: null
+_efi: null
+_efi_srpm_macros_setup:
+  params: ''
+  value: "%{expand:%{lua:\n  -- test if our arch matches\n  local function arch(archmacro)\n\
+    \    local target = rpm.expand(\" %{_target_cpu} \")\n    local arches = rpm.expand(\"\
+    \ \" .. archmacro .. \" \")\n    local match = string.match(arches, target)\n\
+    \    return (match ~= nil)\n  end\n  -- give us the arch...\n  local function\
+    \ getarch()\n    if arch(\"ia64\") then\n      return(\"ia64\")\n    elseif arch(\"\
+    x86_64\") then\n      return(\"x64\")\n    elseif arch(\"%{ix86}\") then\n   \
+    \   return(\"ia32\")\n    elseif arch(\"aarch64\") then\n      return(\"aa64\"\
+    )\n    elseif arch(\"%{arm}\") then\n      return(\"arm\")\n    elseif arch(\"\
+    riscv64\") then\n      return(\"riscv64\")\n    else\n      return(\"none\")\n\
+    \    end\n  end\n  -- alt arch\n  local function getaltarch()\n    if arch(\"\
+    x86_64\") then\n      return(\"ia32\")\n    else\n      return(\"none\")\n   \
+    \ end\n  end\n  -- make some macros\n  local done = rpm.expand(\"%{?_efi}\")\n\
+    \  if done == nil or done == \"\" then\n    local arch = getarch()\n    local\
+    \ alt = getaltarch()\n    print(\"%global _efi x86_64 aarch64 armv3l armv4b armv4l\
+    \ armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl armv7l armv7hl armv7hnl armv8l\
+    \ armv8hl armv8hnl armv8hcnl i386 i486 i586 i686 pentium3 pentium4 athlon geode\
+    \ riscv64\\n\")\n    print(\"%global _efi_vendor fedora\\n\")\n    if arch ==\
+    \ \"none\" then\n      print(\"%global _efi_has_arch 0\\n\")\n    else\n     \
+    \ print(\"%global _efi_has_arch 1\\n\")\n    end\n    print(\"%global _efi_arch\
+    \ \" .. getarch() .. \"\\n\")\n    print(\"%global _efi_arch_upper \" .. string.upper(getarch())\
+    \ .. \"\\n\")\n    if alt == \"none\" then\n      print(\"%global _efi_has_alt_arch\
+    \ 0\\n\")\n    else\n      print(\"%global _efi_has_alt_arch 1\\n\")\n    end\n\
+    \    print(\"%global _efi_alt_arch \" .. alt .. \"\\n\")\n    print(\"%global\
+    \ _efi_alt_arch_upper \" .. string.upper(alt) .. \"\\n\")\n  end\n}}"
+arm:
+  params: null
+  value: armv3l armv4b armv4l armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl armv7l
+    armv7hl armv7hnl armv8l armv8hl armv8hnl armv8hcnl
+arm32:
+  params: null
+  value: armv3l armv4b armv4l armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl armv7l
+    armv7hl armv7hnl armv8l armv8hl armv8hnl armv8hcnl
+arm64:
+  params: null
+  value: aarch64
+centos: null
+cross: null
+efi:
+  params: null
+  value: x86_64 aarch64 armv3l armv4b armv4l armv4tl armv5tl armv5tel armv5tejl armv6l
+    armv6hl armv7l armv7hl armv7hnl armv8l armv8hl armv8hnl armv8hcnl i386 i486 i586
+    i686 pentium3 pentium4 athlon geode riscv64
+el10: null
+el11:
+  params: null
+  value: '1'
+el6: null
+el7: null
+el8: null
+el9: null
+epel: null
+fc40: null
+fc41: null
+fc42: null
+fc43: null
+fc44: null
+fc45: null
+fedora: null
+fpc_arches: null
+gccgo_arches:
+  params: null
+  value: mips mipsel mipsr6 mipsr6el mips64 mips64el mips64r6 mips64r6el
+go_arches:
+  params: null
+  value: x86_64 aarch64 ppc64le s390x riscv64 mips mipsel mipsr6 mipsr6el mips64 mips64el
+    mips64r6 mips64r6el
+golang_arches:
+  params: null
+  value: x86_64 aarch64 ppc64le s390x riscv64
+golang_arches_future:
+  params: null
+  value: x86_64 armv3l armv4b armv4l armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl
+    armv7l armv7hl armv7hnl armv8l armv8hl armv8hnl armv8hcnl aarch64 ppc64le s390x
+    riscv64
+gometa:
+  params: az:svifL
+  value: 'BuildRequires: go-rpm-macros
+
+    %if "%{-m}" == ""
+
+    ExclusiveArch: %{golang_arches}
+
+    %else
+
+    ExclusiveArch: %{golang_arches_future}
+
+    %endif
+
+    '
+grafana_arches: null
+grafanapcp_arches: null
+grub2_exclude_arches: null
+hare_arches:
+  params: null
+  value: x86_64 aarch64 riscv64
+ix86:
+  params: null
+  value: i386 i486 i586 i686 pentium3 pentium4 athlon geode
+java_arches:
+  params: null
+  value: aarch64 ppc64le s390x x86_64 riscv64
+kernel_arches:
+  params: null
+  value: x86_64 s390x ppc64le aarch64 riscv64
+ldc_arches:
+  params: null
+  value: i386 i486 i586 i686 pentium3 pentium4 athlon geode x86_64 armv3l armv4b armv4l
+    armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl armv7l armv7hl armv7hnl armv8l
+    armv8hl armv8hnl armv8hcnl aarch64
+lua: null
+mips:
+  params: null
+  value: mips mipsel mipsr6 mipsr6el mips64 mips64el mips64r6 mips64r6el
+mips32:
+  params: null
+  value: mips mipsel mipsr6 mipsr6el
+mips64:
+  params: null
+  value: mips64 mips64el mips64r6 mips64r6el
+mono_arches:
+  params: null
+  value: i386 i486 i586 i686 pentium3 pentium4 athlon geode x86_64 sparc sparcv9 ia64
+    armv3l armv4b armv4l armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl armv7l
+    armv7hl armv7hnl armv8l armv8hl armv8hnl armv8hcnl aarch64 alpha s390x ppc ppc64
+    ppc64le
+no64bit: null
+nodejs_arches:
+  params: null
+  value: i386 i486 i586 i686 pentium3 pentium4 athlon geode x86_64 armv3l armv4b armv4l
+    armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl armv7l armv7hl armv7hnl armv8l
+    armv8hl armv8hnl armv8hcnl aarch64 ppc64 ppc64p7 ppc64le s390x riscv64
+ocaml_native_compiler:
+  params: null
+  value: aarch64 ppc64 ppc64p7 ppc64le riscv64 s390x x86_64 x86_64_v2 x86_64_v3 x86_64_v4
+    amd64 em64t
+openblas_arches:
+  params: null
+  value: x86_64 i386 i486 i586 i686 pentium3 pentium4 athlon geode armv7hl ppc64 ppc64p7
+    ppc64le aarch64 s390x riscv64
+power64:
+  params: null
+  value: ppc64 ppc64p7 ppc64le
+qt5_qtwebengine_arches: null
+qt6_qtwebengine_arches:
+  params: null
+  value: x86_64 aarch64 ppc64le
+rhel:
+  params: null
+  value: '11'
+riscv:
+  params: null
+  value: riscv32 riscv64 riscv128
+riscv128:
+  params: null
+  value: riscv128
+riscv32:
+  params: null
+  value: riscv32
+riscv64:
+  params: null
+  value: riscv64
+rust_arches:
+  params: null
+  value: x86_64 i386 i486 i586 i686 pentium3 pentium4 athlon geode armv7hl aarch64
+    ppc64 ppc64le riscv64 s390x
+sparc:
+  params: null
+  value: sparc sparcv8 sparcv9 sparcv9v sparc64 sparc64v
+suse_version: null
+use_system_admesh: null
+with_alt_arch: null
+with_bootstrap: null
+with_cython: null
+with_cython_compile: null
+with_debug_valgrind: null
+with_dnf5: null
+with_docs: null
+with_optimized_init: null
+with_spec_integration: null
+with_x86_debug: null
+x86_64:
+  params: null
+  value: x86_64 x86_64_v2 x86_64_v3 x86_64_v4 amd64 em64t
+zig_arches: null
+

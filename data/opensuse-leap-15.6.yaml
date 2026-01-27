@@ -1,0 +1,87 @@
+GNAT_arches: null
+GPRbuild_arches: null
+_efi: null
+_efi_srpm_macros_setup: null
+arm:
+  params: null
+  value: armv3l armv4b armv4l armv4tl armv5b armv5l armv5teb armv5tel armv5tejl armv6l
+    armv6hl armv7l armv7hl armv7hnl
+arm32: null
+arm64: null
+centos: null
+cross: null
+efi: null
+el10: null
+el11: null
+el6: null
+el7: null
+el8: null
+el9: null
+epel: null
+fc40: null
+fc41: null
+fc42: null
+fc43: null
+fc44: null
+fc45: null
+fedora: null
+fpc_arches: null
+gccgo_arches: null
+go_arches: null
+golang_arches: null
+golang_arches_future: null
+gometa: null
+grafana_arches: null
+grafanapcp_arches: null
+grub2_exclude_arches: null
+hare_arches: null
+ix86:
+  params: null
+  value: i386 i486 i586 i686 pentium3 pentium4 athlon geode
+java_arches: null
+kernel_arches: null
+ldc_arches: null
+lua: null
+mips:
+  params: null
+  value: mips mipsel mipsr6 mipsr6el mips64 mips64el mips64r6 mips64r6el
+mips32:
+  params: null
+  value: mips mipsel mipsr6 mipsr6el
+mips64:
+  params: null
+  value: mips64 mips64el mips64r6 mips64r6el
+mono_arches: null
+no64bit: null
+nodejs_arches: null
+ocaml_native_compiler: null
+openblas_arches: null
+power64:
+  params: null
+  value: ppc64 ppc64p7 ppc64le
+qt5_qtwebengine_arches: null
+qt6_qtwebengine_arches: null
+rhel: null
+riscv: null
+riscv128: null
+riscv32: null
+riscv64: null
+rust_arches: null
+sparc:
+  params: null
+  value: sparc sparcv8 sparcv9 sparcv9v sparc64 sparc64v
+suse_version: null
+use_system_admesh: null
+with_alt_arch: null
+with_bootstrap: null
+with_cython: null
+with_cython_compile: null
+with_debug_valgrind: null
+with_dnf5: null
+with_docs: null
+with_optimized_init: null
+with_spec_integration: null
+with_x86_debug: null
+x86_64: null
+zig_arches: null
+
