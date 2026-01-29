@@ -55,6 +55,8 @@ def merge_yaml_files(data_dir="./data"):
                     tags.append("epel-" + version)
                 elif family == "centos+epel" and int(version) <= 7:
                     tags.append("epel-" + version)
+                elif family == "fedora" and version == "eln":
+                    tags.append("rhel-11")
 
         # Build the final merged structure
         for value_dump, basenames in values_by_content.items():
