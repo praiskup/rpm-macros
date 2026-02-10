@@ -15,6 +15,7 @@ distros=(
     centos-stream-9
     centos-stream+epel-next-8
     centos-stream+epel-next-9
+    centos-stream+epel-10
     centos+epel-7
     fedora-42
     fedora-43
@@ -32,6 +33,7 @@ distros=(
     rhel-7
     rhel-8
     rhel-9
+    rhel+epel-7
     rhel+epel-8
     rhel+epel-9
     rhel+epel-10
@@ -43,6 +45,9 @@ for distro in "${distros[@]}"; do
     mock_opt=$distro-$arch
     case $distro in
     centos+epel-7)
+        mock_opt=eol/$mock_opt
+        ;;
+    rhel+epel-7)
         mock_opt=eol/$mock_opt
         ;;
     esac
