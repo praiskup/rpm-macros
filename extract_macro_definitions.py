@@ -41,7 +41,7 @@ def expand_non_parametric_macro_rpm(macro_name, root):
     Call 'rpm --eval %macro_name'
     """
 
-    cmd = ['mock', '-r', 'fedora-rawhide-x86_64',
+    cmd = ['mock', '-r', root,
            '--shell', 'rpm', '--eval', '%' + macro_name]
     output = subprocess.check_output(cmd).decode("utf-8")
     return output[:-1]
