@@ -171,7 +171,7 @@ qt5_qtwebengine_arches:
     armv8hl armv8hnl armv8hcnl aarch64 mips mipsel mips64el riscv64
 qt6_qtwebengine_arches:
   params: null
-  value: x86_64 aarch64 ppc64le
+  value: x86_64 aarch64 ppc64le riscv64
 rhel: null
 riscv:
   params: null

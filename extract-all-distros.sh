@@ -45,10 +45,7 @@ distros=(
 for distro in "${distros[@]}"; do
     mock_opt=$distro-$arch
     case $distro in
-    centos+epel-7)
-        mock_opt=eol/$mock_opt
-        ;;
-    rhel+epel-7)
+    centos+epel-7|rhel+epel-7|fedora-41)
         mock_opt=eol/$mock_opt
         ;;
     esac

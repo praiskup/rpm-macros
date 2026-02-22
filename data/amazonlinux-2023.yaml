@@ -43,7 +43,7 @@ efi:
   params: null
   value: x86_64 aarch64 armv3l armv4b armv4l armv4tl armv5tl armv5tel armv5tejl armv6l
     armv6hl armv7l armv7hl armv7hnl armv8l armv8hl armv8hnl armv8hcnl i386 i486 i586
-    i686 pentium3 pentium4 athlon geode riscv64
+    i686 pentium3 pentium4 athlon geode
 el10: null
 el11: null
 el6: null
