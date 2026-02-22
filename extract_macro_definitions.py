@@ -85,7 +85,7 @@ def _main():
                 macro_defs["gometa"] = {
                     "value": (
                         'BuildRequires: go-rpm-macros\n'
-                        '%if "%{-m}" == ""\n'
+                        '%if "%{-f}" == ""\n'
                         'ExclusiveArch: %{golang_arches}\n'
                         '%else\n'
                         'ExclusiveArch: %{golang_arches_future}\n'

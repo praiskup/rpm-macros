@@ -72,7 +72,7 @@ gometa:
   params: az:svifL
   value: 'BuildRequires: go-rpm-macros
 
-    %if "%{-m}" == ""
+    %if "%{-f}" == ""
 
     ExclusiveArch: %{golang_arches}
 

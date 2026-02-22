@@ -78,7 +78,7 @@ gometa:
   params: az:svifL
   value: 'BuildRequires: go-rpm-macros
 
-    %if "%{-m}" == ""
+    %if "%{-f}" == ""
 
     ExclusiveArch: %{golang_arches}
 
@@ -122,7 +122,7 @@ mono_arches:
   params: null
   value: i386 i486 i586 i686 pentium3 pentium4 athlon geode x86_64 sparc sparcv9 ia64
     armv3l armv4b armv4l armv4tl armv5tl armv5tel armv5tejl armv6l armv6hl armv7l
-    armv7hl armv7hnl aarch64 alpha s390x ppc ppc64 ppc64le
+    armv7hl armv7hnl alpha s390x ppc ppc64 ppc64le
 no64bit: null
 nodejs_arches:
   params: null
