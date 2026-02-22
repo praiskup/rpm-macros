@@ -19,6 +19,7 @@ distros=(
     centos+epel-7
     fedora-42
     fedora-43
+    fedora-44
     fedora-eln
     fedora-rawhide
     mageia-8
